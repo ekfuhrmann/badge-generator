@@ -2,12 +2,25 @@
 This repository is meant to serve as a default starting point for new projects.
 
 # To Use
-  <ol>
-    <li>Create the <strong>new_repo</strong> in github.</li>
-    <li>cd to your local copy of the old repo you want to extract from, which is set up to track the <strong>old_branch</strong> that will become the <strong>new_repo's</strong> master.</li>
-  </ol>
+As this repository is intended to serve as a starting point for new projects, you should mirror this repository into your new project's repository.
   
-  Read more http://stackoverflow.com/questions/9527999/how-do-i-create-a-new-github-repo-from-a-branch-in-an-existing-repo
+  Open up the command line and type these commands:</li>
+```command
+$ git clone --bare https://github.com/ekfuhrmann/repo_setup.git
+# Make a bare clone of this repository
+```
+```command
+$ cd repo_setup.git
+$ git push --mirror https://github.com/exampleuser/new-repository.git
+# Mirror-push to the new repository
+```
+```command
+$ cd ..
+$ rm -rf repo_setup.git
+# Remove our temporary local repository
+```
+
+Read more <a href="https://help.github.com/articles/duplicating-a-repository/">here</a>.
 
 # Important
-Be sure to run an <em>npm install</em> on the repository once you clone it.
+Be sure to run `npm install` on the new repository once it has been mirrored to.
