@@ -14,7 +14,7 @@ $ git push --mirror https://github.com/exampleuser/new-repository.git
 ```
 ```command
 $ cd ..
-$ rm -rf repo_setup.git
+$ rm -Recurse -Force repo_setup.git
 # Remove our temporary local repository
 ```
 
