@@ -2,9 +2,7 @@
 This repository is meant to serve as a default starting point for new projects.
 
 # To Use
-As this repository is intended to serve as a starting point for new projects, you should mirror this repository into your new project's repository.
-  
-  Open up the command line and type these commands:</li>
+Open up the command line and type these commands:</li>
 ```command
 $ git clone --bare https://github.com/ekfuhrmann/repo_setup.git
 # Make a bare clone of this repository
