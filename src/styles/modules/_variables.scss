@@ -2,8 +2,10 @@
 
 // Settings
 $gridGap: 20px;
+
+//Media Mixin Breakpoints  (Modify as needed)
 $breakpoints: (
-    phone: 375px,
-    tablet: 750px,
-    desktop: 1240px
+    phone: 320px,
+    tablet: 768px,
+    desktop: 1024px
 );

@@ -40,7 +40,8 @@ gulp.task('sass', function() {
     .pipe(p.sass({
         outputStyle: 'compressed',
         includePaths: [
-          './node_modules/normalize-scss/sass'
+          './node_modules/normalize-scss/sass',
+          './node_modules/include-media/dist'
         ],
     }))
     .on('error', p.notify.onError('Error: <%= error.message %>'))

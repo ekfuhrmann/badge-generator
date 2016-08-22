@@ -1,8 +1,8 @@
 // NORMALIZE
-@import "normalize";
+@import "normalize";  // loaded from node_modules
 
 // VENDORS
-@import "vendors/include-media";
+@import "include-media"; // loaded from node_modules
 @import "vendors/viewport-text";
 
 // MODULES & VARIABLES
