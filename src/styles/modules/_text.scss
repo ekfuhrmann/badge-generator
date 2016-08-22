@@ -1,0 +1,96 @@
+// LOAD FONTS HERE
+
+
+/*=========================================================================
+------------------------Text Mixins for Consistency------------------------
+=========================================================================*/
+@mixin text($size, $color: null) {
+
+    @if ($size == 'h1') {
+        font-family: 'Helvetica', sans-serif; // CHANGE FONT-FAMILY ACCORDINGLY
+        @include responsive-font(4vw, 24px, 40px, 4rem); // SCALES FONT BASED ON VIEWPORT
+        color: $color;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        line-height: calc(3rem + 1vw);
+        @include media('>=desktop') {
+            line-height: 4rem;  // SETS A MAX LINE-HEIGHT
+        }
+
+    } @else if ($size == 'h2') {
+        font-family: 'Helvetica', sans-serif;
+        @include responsive-font(4vw, 18px, 24px, 2.4rem);
+        color: $color;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        line-height: calc(2rem + 1vw);
+
+        @include media('>=desktop') {
+            line-height: 3rem;  // SETS A MAX LINE-HEIGHT
+        }
+
+    } @else if ($size == 'h3') {
+        font-family: 'Helvetica', sans-serif;
+        @include responsive-font(4vw, 16px, 20px, 2rem);
+        color: $color;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        line-height: calc(1.5rem + 1vw);
+
+        @include media('>=desktop') {
+            line-height: 2.5rem;  // SETS A MAX LINE-HEIGHT
+        }
+
+    } @else if ($size == 'h4') {
+        font-family: 'Times New Roman', serif;
+        @include responsive-font(4vw, 16px, 20px, 2rem);
+        color: $color;
+        font-weight: normal;
+        line-height: calc(1.5rem + 1vw);
+
+        @include media('>=desktop') {
+            line-height: 3rem;  // SETS A MAX LINE-HEIGHT
+        }
+
+
+    } @else if ($size == 'h5') {
+        font-family: 'Helvetica', sans-serif;
+        @include responsive-font(4vw, 12px, 14px, 1.4rem);
+        color: $color;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        line-height: calc(1.2rem + 1vw);
+
+        @include media('>=desktop') {
+            line-height: 2rem;  // SETS A MAX LINE-HEIGHT
+        }
+
+    } @else if ($size == 'h6') {
+        font-family: 'Helvetica', sans-serif;
+        @include responsive-font(4vw, 10px, 10px, 1rem);
+        color: $color;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: calc(1.1rem + 1vw);
+        letter-spacing: 1px;
+
+        @include media('>=desktop') {
+            line-height: 1rem;  // SETS A MAX LINE-HEIGHT
+        }
+
+    } @else if ($size == 'p') {
+        font-family: 'Times New Roman', serif;
+        @include responsive-font(4vw, 12px, 14px, 1.4rem);
+        color: $color;
+        font-weight: normal;
+        line-height: calc(1.2rem + 1vw);
+
+        @include media('>=desktop') {
+            line-height: 2.5rem;  // SETS A MAX LINE-HEIGHT
+        }
+    }
+}

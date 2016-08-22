@@ -1,3 +1,11 @@
 # Node.
 node_modules
-npm-debug.log
+bower
+.sass-cache
+.ftpconfig
+*.map
+*.log
+*.swo
+*.swp
+.DS_Store
+public
