@@ -1,12 +1,23 @@
-// Third-Party
+// NORMALIZE
+@import "normalize";
+
+// VENDORS
 @import "vendors/include-media";
 @import "vendors/viewport-text";
 
-// Modules and Variables
+// MODULES & VARIABLES
 @import "modules/svgs";
 @import "modules/text";
 @import "modules/utilities";
 @import "modules/variables";
 
-//Partials
+// PARTIALS
 @import "partials/menu";
+
+// BOX-SIZING
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}

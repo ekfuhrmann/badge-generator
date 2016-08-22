@@ -37,7 +37,12 @@ gulp.task('ejs', function() {
 
 gulp.task('sass', function() {
   return gulp.src('src/styles/style.scss')
-    .pipe(p.sass({outputStyle: 'compressed'}))
+    .pipe(p.sass({
+        outputStyle: 'compressed',
+        includePaths: [
+          './node_modules/normalize-scss/sass'
+        ],
+    }))
     .on('error', p.notify.onError('Error: <%= error.message %>'))
     .on('error', handle)
     .pipe(p.autoprefixer())
@@ -59,7 +64,7 @@ gulp.task('watch', function() {
   gulp.watch('src/images/**/*', ['images']);
   gulp.watch('src/fonts/**/*', ['fonts']);
   gulp.watch('src/views/**/*.ejs', ['ejs']);
-  gulp.watch('src/style/**/*.scss', ['sass']);
+  gulp.watch('src/styles/**/*.scss', ['sass']);
   gulp.watch('src/scripts/*.js', ['scripts']);
 });
 
