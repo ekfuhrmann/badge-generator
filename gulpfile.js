@@ -3,7 +3,7 @@ var p = require('gulp-load-plugins')();
 
 var handle = function(err) {
   console.log(err); this.emit('end');
-}
+};
 
 gulp.task('server', function() {
   return p.connect.server({

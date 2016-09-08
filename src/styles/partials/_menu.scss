@@ -1,4 +1,20 @@
 // EXAMPLE PARTIALS DOCUMENT
 h1 {
     @include text('h1', red);
+    display: flex;
+    align-items: center;
+    &::after {
+        content: '';
+        display: inline-block;
+        @include icon-example-expand(blue, 15px, 25px);
+        margin-left: $gridGap;
+    }
+}
+
+div {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 30px;
+    width: 30px;
+    background: blue;
 }
