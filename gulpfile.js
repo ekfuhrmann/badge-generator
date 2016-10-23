@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var webpack = require('webpack-stream');
 var p = require('gulp-load-plugins')();
 
 var handle = function(err) {
@@ -11,6 +12,15 @@ gulp.task('server', function() {
     port: 8000,
     livereload: true
   });
+});
+
+
+//  Loads webpack for ReactJS
+gulp.task('webpack', function() {
+  return gulp.src('src/index.jsx')
+    .pipe(webpack( require('./webpack.config.js') ))
+    .pipe(gulp.dest('public/'))
+    .pipe(p.connect.reload());
 });
 
 gulp.task('images', function() {
@@ -63,11 +73,12 @@ gulp.task('scripts', function() {
 
 gulp.task('watch', function() {
   gulp.watch('src/images/**/*', ['images']);
+  gulp.watch('src/**/*.jsx', ['webpack']);
   gulp.watch('src/fonts/**/*', ['fonts']);
   gulp.watch('src/views/**/*.ejs', ['ejs']);
   gulp.watch('src/styles/**/*.scss', ['sass']);
   gulp.watch('src/scripts/*.js', ['scripts']);
 });
 
-gulp.task('default', [ 'server', 'fonts', 'images', 'ejs', 'sass', 'scripts', 'watch' ]);
-gulp.task('build', ['fonts', 'images', 'ejs', 'sass', 'scripts']);
+gulp.task('default', [ 'server', 'webpack', 'fonts', 'images', 'ejs', 'sass', 'scripts', 'watch' ]);
+gulp.task('build', ['fonts', 'images', 'webpack', 'ejs', 'sass', 'scripts']);

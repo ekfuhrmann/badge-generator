@@ -10,11 +10,3 @@ h1 {
         margin-left: $gridGap;
     }
 }
-
-div {
-    display: flex;
-    flex-flow: column nowrap;
-    height: 30px;
-    width: 30px;
-    background: blue;
-}
