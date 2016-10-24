@@ -22,7 +22,3 @@ Read more <a href="https://help.github.com/articles/duplicating-a-repository/">h
 
 ## Important
 Be sure to run `npm install` on the new repository once it has been mirrored to.
-
-
-## TODO
-* Add eslint

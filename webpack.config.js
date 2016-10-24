@@ -11,6 +11,13 @@ var config = {
         filename: 'bundle.js'
     },
     module: {
+        preLoaders: [
+            {
+                test: /\.jsx?$/,
+                loaders: ['eslint'],
+                exclude: /node_modules/
+            }
+        ],
         // Loaders are what manage all of your actual code and assets.
         loaders: [
             { // ES6 loader config
