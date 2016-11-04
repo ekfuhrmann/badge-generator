@@ -14,10 +14,18 @@
 // PARTIALS
 @import "partials/menu";
 
-// BOX-SIZING
+// BOX-SIZING - FONT-SIZING PRESETS
 html {
   box-sizing: border-box;
+  font-size: 62.5%; // Scales 1 rem unit to 10px
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
+}
+
+body {
+    font-size: 1.4rem; // = 14px default font size
+    min-width: 300px;
+    margin: 0;
 }

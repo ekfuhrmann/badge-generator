@@ -1,4 +1,9 @@
 // Colors - http://www.color-blindness.com/color-name-hue/
+$white: #FFFFFF;
+$solitude-light: #EFF3F5;
+$solitude: #D8E0E5;
+$ziggurat: #86ACAC;
+$ming: #437878;
 
 // Settings
 $gridGap: 20px;
@@ -6,6 +11,8 @@ $gridGap: 20px;
 //Media Mixin Breakpoints  (Modify as needed)
 $breakpoints: (
     phone: 320px,
+    phone-lg: 550px,
     tablet: 768px,
-    desktop: 1024px
+    desktop: 1024px,
+    desktop-lg: 1440px
 );
