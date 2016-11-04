@@ -10,7 +10,8 @@ gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
             baseDir: './public'
-        }
+        },
+        port: 8000
     })
 })
 
