@@ -14,7 +14,7 @@
         text-transform: uppercase;
         letter-spacing: 2px;
         line-height: calc(3rem + 1vw);
-        @include media('>=desktop') {
+        @include media('>=xl') {
             line-height: 4rem;  // SETS A MAX LINE-HEIGHT
         }
 
@@ -27,7 +27,7 @@
         letter-spacing: 2px;
         line-height: calc(2rem + 1vw);
 
-        @include media('>=desktop') {
+        @include media('>=xl') {
             line-height: 3rem;  // SETS A MAX LINE-HEIGHT
         }
 
@@ -40,7 +40,7 @@
         letter-spacing: 2px;
         line-height: calc(1.5rem + 1vw);
 
-        @include media('>=desktop') {
+        @include media('>=xl') {
             line-height: 2.5rem;  // SETS A MAX LINE-HEIGHT
         }
 
@@ -51,7 +51,7 @@
         font-weight: normal;
         line-height: calc(1.5rem + 1vw);
 
-        @include media('>=desktop') {
+        @include media('>=xl') {
             line-height: 3rem;  // SETS A MAX LINE-HEIGHT
         }
 
@@ -65,7 +65,7 @@
         letter-spacing: 2px;
         line-height: calc(1.2rem + 1vw);
 
-        @include media('>=desktop') {
+        @include media('>=xl') {
             line-height: 2rem;  // SETS A MAX LINE-HEIGHT
         }
 
@@ -78,7 +78,7 @@
         line-height: calc(1.1rem + 1vw);
         letter-spacing: 1px;
 
-        @include media('>=desktop') {
+        @include media('>=xl') {
             line-height: 1rem;  // SETS A MAX LINE-HEIGHT
         }
 
@@ -89,7 +89,7 @@
         font-weight: normal;
         line-height: calc(1.2rem + 1vw);
 
-        @include media('>=desktop') {
+        @include media('>=xl') {
             line-height: 2.5rem;  // SETS A MAX LINE-HEIGHT
         }
     }
