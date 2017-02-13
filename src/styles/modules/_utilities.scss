@@ -1,8 +1,6 @@
 // EXAMPLE UTILITY MIXIN
-
-/*--------------------------------WRAPPER--------------------------------*/
 @mixin wrapper {
-    max-width: 1360px;
-    width: 100%;
-    margin: 0 auto;
+  margin: 0 auto;
+  max-width: 1360px;
+  width: 100%;
 }

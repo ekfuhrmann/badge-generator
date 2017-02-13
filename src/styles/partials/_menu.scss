@@ -1,12 +1,13 @@
 // EXAMPLE PARTIALS DOCUMENT
 h1 {
-    @include text('h1', red);
-    display: flex;
-    align-items: center;
-    &::after {
-        content: '';
-        display: inline-block;
-        @include icon-example-expand(blue, 15px, 25px);
-        margin-left: $gridGap;
-    }
+  @include text('h1', red);
+  align-items: center;
+  display: flex;
+
+  &::after {
+    @include icon-example-expand(blue, 15px, 25px);
+    content: '';
+    display: inline-block;
+    margin-left: $gridGap;
+  }
 }

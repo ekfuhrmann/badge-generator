@@ -1,96 +1,38 @@
-// LOAD FONTS HERE
+// IMPORT FONTS HERE
 
+// source sans pro
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400');
 
-/*=========================================================================
-------------------------Text Mixins for Consistency------------------------
-=========================================================================*/
-@mixin text($size, $color: null) {
+// sentinel
+@import url('https://cloud.typography.com/7775932/607446/css/fonts.css');
 
-    @if ($size == 'h1') {
-        font-family: 'Helvetica', sans-serif; // CHANGE FONT-FAMILY ACCORDINGLY
-        @include responsive-font(4vw, 24px, 40px, 4rem); // SCALES FONT BASED ON VIEWPORT
-        color: $color;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        line-height: calc(3rem + 1vw);
-        @include media('>=xl') {
-            line-height: 4rem;  // SETS A MAX LINE-HEIGHT
-        }
+// FONT FAMILY VARIABLES (used for calling font)
+@mixin font-family($family) {
+  @if ($family == 'source-sans-pro') {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
 
-    } @else if ($size == 'h2') {
-        font-family: 'Helvetica', sans-serif;
-        @include responsive-font(4vw, 18px, 24px, 2.4rem);
-        color: $color;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        line-height: calc(2rem + 1vw);
+  @else if ($family == 'sentinel') {
+    font-family: 'Sentinel A', 'Sentinel B', serif;
+  }
 
-        @include media('>=xl') {
-            line-height: 3rem;  // SETS A MAX LINE-HEIGHT
-        }
+  @else {
+    font-family: sans-serif;
+  }
+}
 
-    } @else if ($size == 'h3') {
-        font-family: 'Helvetica', sans-serif;
-        @include responsive-font(4vw, 16px, 20px, 2rem);
-        color: $color;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        line-height: calc(1.5rem + 1vw);
+// Creates responsive font that scales with screen size (input max-size)
+@mixin sizer($size) {
+  $size-px: $size * 1px; // Convert to px
+  $size-reduce-px: $size * 0.7 * 1px; // Convert to smaller px variant for scaling (can change decimal value for project need)
+  $size-rem: $size / 10 * 1rem; // Convert to rem
+  @include responsive-font(4vw, $size-reduce-px, $size-px, $size-rem);
+}
 
-        @include media('>=xl') {
-            line-height: 2.5rem;  // SETS A MAX LINE-HEIGHT
-        }
-
-    } @else if ($size == 'h4') {
-        font-family: 'Times New Roman', serif;
-        @include responsive-font(4vw, 16px, 20px, 2rem);
-        color: $color;
-        font-weight: normal;
-        line-height: calc(1.5rem + 1vw);
-
-        @include media('>=xl') {
-            line-height: 3rem;  // SETS A MAX LINE-HEIGHT
-        }
-
-
-    } @else if ($size == 'h5') {
-        font-family: 'Helvetica', sans-serif;
-        @include responsive-font(4vw, 12px, 14px, 1.4rem);
-        color: $color;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        line-height: calc(1.2rem + 1vw);
-
-        @include media('>=xl') {
-            line-height: 2rem;  // SETS A MAX LINE-HEIGHT
-        }
-
-    } @else if ($size == 'h6') {
-        font-family: 'Helvetica', sans-serif;
-        @include responsive-font(4vw, 10px, 10px, 1rem);
-        color: $color;
-        font-weight: 700;
-        text-transform: uppercase;
-        line-height: calc(1.1rem + 1vw);
-        letter-spacing: 1px;
-
-        @include media('>=xl') {
-            line-height: 1rem;  // SETS A MAX LINE-HEIGHT
-        }
-
-    } @else if ($size == 'p') {
-        font-family: 'Times New Roman', serif;
-        @include responsive-font(4vw, 12px, 14px, 1.4rem);
-        color: $color;
-        font-weight: normal;
-        line-height: calc(1.2rem + 1vw);
-
-        @include media('>=xl') {
-            line-height: 2.5rem;  // SETS A MAX LINE-HEIGHT
-        }
-    }
+// Mixin used for calling font
+@mixin text($family, $size, $weight: null, $color: null) {
+  @include font-family($family);
+  @include sizer($size);
+  color: $color;
+  font-weight: $weight;
 }

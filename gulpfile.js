@@ -70,7 +70,7 @@ gulp.task('scripts', function() {
   .on('error', plugins.notify.onError('Error: <%= error.message %>'))
     .pipe(plugins.babel())
     .pipe(plugins.concat('scripts.js'))
-    // .pipe(plugins.uglify())
+    .pipe(plugins.uglify())
     .pipe(gulp.dest('./public'))
     .pipe(plugins.connect.reload());
 });
