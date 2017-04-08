@@ -9,12 +9,12 @@ $ git clone https://github.com/ekfuhrmann/repo_setup.git
 ```
 ```command
 $ cd repo_setup.git
-$ rm -R .git/
+$ remove-item .git/ -Recurse -Force
 # Delete the git directory
 ```
 ```command
 $ git init
-# Re-init repo content into the new project
+# Re-init repository content into the new project
 ```
 
 
