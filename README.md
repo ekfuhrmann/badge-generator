@@ -1,7 +1,24 @@
 ## About
 This repository is meant to serve as a default starting point for new projects.
 
-## To Use
+## To Use With New Repo
+Open up the command line and type these commands:</li>
+```command
+$ git clone https://github.com/ekfuhrmann/repo_setup.git
+# Make a clone of this repository
+```
+```command
+$ cd repo_setup.git
+$ rm -R .git/
+# Delete the git directory
+```
+```command
+$ git init
+# Re-init repo content into the new project
+```
+
+
+## To Use With Existing Commits
 Open up the command line and type these commands:</li>
 ```command
 $ git clone --bare https://github.com/ekfuhrmann/repo_setup.git
