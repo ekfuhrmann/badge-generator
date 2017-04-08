@@ -1,6 +1,15 @@
-// EXAMPLE UTILITY MIXIN
-@mixin wrapper {
-  margin: 0 auto;
-  max-width: 1360px;
-  width: 100%;
+@mixin position($position: relative, $top: null, $right: null, $bottom: null, $left: null) {
+  bottom: $bottom;
+  left: $left;
+  position: $position;
+  right: $right;
+  top: $top;
+}
+
+@mixin hide-text {
+  color: transparent;
+  font-size: 0;
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
 }

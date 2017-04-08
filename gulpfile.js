@@ -38,7 +38,7 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('ejs', function() {
-  return gulp.src('src/views/**/*.ejs')
+  return gulp.src(['src/views/*.ejs', 'src/views/!(partials)**/*.ejs'])
     .pipe(plugins.ejs())
     // .on('error', plugins.notify.onError('Error: <%= error.message %>'))
     .on('error', reportError)
@@ -61,7 +61,7 @@ gulp.task('sass', function() {
     .on('error', reportError)
     .pipe(plugins.autoprefixer())
     .pipe(plugins.rename({suffix: '.min'}))
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest('./public/styles'))
     .pipe(plugins.connect.reload());
 });
 
@@ -71,7 +71,7 @@ gulp.task('scripts', function() {
     .pipe(plugins.babel())
     .pipe(plugins.concat('scripts.js'))
     .pipe(plugins.uglify())
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest('./public/scripts'))
     .pipe(plugins.connect.reload());
 });
 

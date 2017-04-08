@@ -4,6 +4,7 @@
 // VENDORS
 @import "include-media"; // loaded from node_modules
 @import "vendors/viewport-text";
+@import "vendors/link-underline";
 
 // MODULES & VARIABLES
 @import "modules/svgs";
@@ -20,7 +21,9 @@ html {
   font-size: 62.5%; // Scales 1 rem unit to 10px
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
