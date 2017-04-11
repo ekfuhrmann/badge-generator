@@ -8,7 +8,7 @@ $ git clone https://github.com/ekfuhrmann/repo_setup.git
 # Make a clone of this repository
 ```
 ```command
-$ cd repo_setup.git
+$ cd repo_setup
 $ remove-item .git/ -Recurse -Force
 # Delete the git directory
 ```
