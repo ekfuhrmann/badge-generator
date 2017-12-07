@@ -12,7 +12,7 @@ const production = argv.prod || argv.production
 const destination = `${config.distFolder}/assets/stylesheets`
 
 gulp.task('scss', () => {
-    return gulp.src('./src/scss/main.scss')
+    return gulp.src('./src/styles/main.scss')
     .pipe($.sass({
         includePaths: config.scssIncludes
     }))
