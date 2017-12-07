@@ -49,7 +49,7 @@ gulp.task('watch', done => {
     gulp.watch('src/svg/*', gulp.series('svg', reload));
     gulp.watch('src/svg/inline/**/*', gulp.series('svg:inline', reload));
     gulp.watch('src/svg/external/**/*', gulp.series('svg:external', reload));
-    gulp.watch('src/scss/**/*.scss', gulp.series('scss', reload));
+    gulp.watch('src/styles/**/*.scss', gulp.series('scss', reload));
     gulp.watch('src/scripts/**/*', gulp.series('scripts', reload));
     gulp.watch('src/favicons/**/*', gulp.series('favicons', reload));
     gulp.watch('src/assets/**/*', gulp.series('assets', reload));
