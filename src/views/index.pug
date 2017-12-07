@@ -1,0 +1,19 @@
+extends templates/_default
+
+block includes  
+    include layouts/includes/_mixins
+
+//- Page Head Variables
+block vars
+    -var title = '';
+    -var description = '';  
+
+block content
+    .svg__spritesheet
+        include ./layouts/includes/inline.svg 
+
+    //- Footer
+    include layouts/general/_footer
+        h1 Hello World
+            //- Example inline svg (<SVG Name>, <class name>)
+            +inline-svg('arrow-down', 'icon')

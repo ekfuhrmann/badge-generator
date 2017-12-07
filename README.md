@@ -1,5 +1,5 @@
 ## About
-This repository is meant to serve as a default starting point for new projects.
+This repository is a boilerplate for new PUG projects.
 
 ## To Use With New Repo
 Open up the command line and type these commands:</li>
@@ -25,13 +25,13 @@ $ git clone --bare https://github.com/ekfuhrmann/repo_setup.git
 # Make a bare clone of this repository
 ```
 ```command
-$ cd repo_setup.git
-$ git push --mirror https://github.com/exampleuser/new-repository.git
+$ cd repo_setup
+$ git push --mirror https://github.com/exampleuser/<new-repository>.git
 # Mirror-push to the new repository
 ```
 ```command
 $ cd ..
-$ rm -Recurse -Force repo_setup.git
+$ rm -Recurse -Force repo_setup
 # Remove our temporary local repository
 ```
 

@@ -1,0 +1,11 @@
+h1 {
+    @include text('raleway', 48, 400, map-deep-get($colors, black, primary));
+    align-items: center;
+    display: inline-flex;
+}
+
+.icon {
+    height: 20px;
+    margin-left: $gridGap;
+    width: 20px;
+}

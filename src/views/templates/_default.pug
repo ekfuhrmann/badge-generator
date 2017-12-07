@@ -1,0 +1,25 @@
+include ../layouts/general/_head
+
+//- If extra includes content is necessary per page
+block includes
+
+//- Define page variables here such as 'title' and 'description'
+block vars
+
+doctype html
+html(lang='en-US')
+    head
+        +headContent(title, description)
+        block head
+        
+    body    
+        block content
+        
+        //- Scripts
+        if productionMode
+            script(src='assets/javascript/main.min.js')
+        else
+            script(src='assets/javascript/main.js')
+        
+        block scripts
+        //- If extra scripts are needed replace here
