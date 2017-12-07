@@ -1,11 +1,14 @@
 # Node.
 node_modules
 bower
+.vscode
 .sass-cache
+.publish
+.vscode
 .ftpconfig
 *.map
 *.log
 *.swo
 *.swp
 .DS_Store
-public
+dist

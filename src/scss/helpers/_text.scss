@@ -1,0 +1,35 @@
+// Raleway = Google Font
+// FONT FAMILY VARIABLES (used for calling font)
+@mixin font-family($family) {
+    @if ($family=='raleway') {
+        font-family: 'Raleway', sans-serif;
+    }
+
+    @else if ($family=='times-new-roman') {
+        font-family: 'Times New Roman', serif;
+    }
+
+    @else {
+        font-family: 'Raleway', sans-serif;
+    }
+}
+
+// Creates responsive font that scales with screen size (input max-size)
+@mixin sizer($size) {
+    $size-px: $size * 1px; // Convert to px
+    $size-reduce-px: $size * 0.7 * 1px; // Convert to smaller px variant for scaling (can change decimal value for project need)
+    $size-rem: $size / 10 * 1rem; // Convert to rem
+
+    @include responsive-font(4vw, $size-reduce-px, $size-px, $size-rem);
+}
+
+// Mixin used for calling font
+@mixin text($family, $size, $weight: null, $color: null) {
+    @include font-family($family);
+    color: $color;
+    font-weight: $weight;
+
+    @if ($size !=null) {
+        @include sizer($size);
+    }
+}

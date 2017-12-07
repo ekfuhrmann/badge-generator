@@ -1,0 +1,1 @@
+console.log('Boilerplate Template - https://github.com/ekfuhrmann/project-boilerplate');
