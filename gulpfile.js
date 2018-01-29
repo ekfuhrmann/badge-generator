@@ -1,27 +1,17 @@
 'use strict';
 
-const gulp              = require('gulp');
-const browserSync       = require('browser-sync');
-const requireDir        = require('require-dir');
-const config            = require('./gulp/config');
+const gulp = require('gulp');
+const browserSync = require('browser-sync');
+const requireDir = require('require-dir');
+const config = require('./gulp/config');
 
 // Let's require all the tasks inside gulp/tasks
 requireDir('./gulp/tasks', {
-    recurse : true
+    recurse: true
 });
 
 // The main building block task
-gulp.task('build', gulp.series(
-    'clean',
-    'svg',
-    'pug',
-    'favicons',
-    'fonts',
-    'scss',
-    'scripts',
-    'imagemin',
-    'assets'
-));
+gulp.task('build', gulp.series('clean', 'svg', 'pug', 'favicons', 'fonts', 'scss', 'scripts', 'imagemin', 'assets'));
 
 // Function to properly reload your browser
 function reload(done) {
@@ -29,20 +19,19 @@ function reload(done) {
     done();
 }
 
-gulp.task('browser-sync', done => {
+gulp.task('browser-sync', () => {
     return browserSync.init({
-        server : {
-            baseDir : config.distFolder,
-            serveStaticOptions : {
-                extensions : ['html']
+        server: {
+            baseDir: config.distFolder,
+            serveStaticOptions: {
+                extensions: ['html']
             }
         },
         port: 8000,
-        open : false,
+        open: false,
         notify: false,
-        logConnections : true
+        logConnections: true
     });
-    // done();
 });
 
 gulp.task('watch', done => {

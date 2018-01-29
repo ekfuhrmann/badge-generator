@@ -1,33 +1,33 @@
 // Media Query Breakpoint Map (Modify as needed)
-$breakpoints: ( xs: 320px, // Mobile
-    sm: 650px, // Mobile-Lg
-    md: 768px, // Tablet
-    lg: 1024px, // Laptop
-    xl: 1440px, // Desktop
+$breakpoints: (
+    xs: 320px,
+    sm: 650px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1440px
 );
 
 // NORMALIZE
-@import "normalize-scss/sass/normalize"; // loaded from node_modules
+@import 'normalize-scss/sass/normalize'; // loaded from node_modules
 
 // VENDORS
-@import "animate-scss/animate.scss"; // loaded from node_modules
-@import "super-gigi/dist/main"; // loaded from node_modules
-@import "vendors/viewport-text";
-@import "vendors/link-underline";
+@import 'animate-scss/animate.scss'; // loaded from node_modules
+@import 'super-gigi/dist/main'; // loaded from node_modules
+@import 'vendors/viewport-text';
+@import 'vendors/link-underline';
 
 // HELPERS
-@import "helpers/variables";
-@import "helpers/colors";
-@import "helpers/text";
-@import "helpers/utilities";
+@import 'helpers/variables';
+@import 'helpers/colors';
+@import 'helpers/text';
+@import 'helpers/utilities';
 
 // PARTIALS
-@import "partials/example";
+@import 'partials/example';
 // PAGES
 // BOX-SIZING - FONT-SIZING PRESETS
 html {
     box-sizing: border-box;
-    font-size: 62.5%; // Scales 1 rem unit to 10px
 }
 
 *,
@@ -37,7 +37,7 @@ html {
 }
 
 body {
-    font-size: 1.6rem; // = 16px default font size
+    font-size: 1rem; // = 16px default font size
     margin: 0;
     min-width: 320px;
     overflow-x: hidden;

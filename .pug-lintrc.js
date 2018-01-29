@@ -28,24 +28,31 @@ module.exports = {
     requireLowerCaseTags: true,
     requireSpaceAfterCodeOperator: true,
     requireSpacesInsideAttributeBrackets: null,
-    requireSpecificAttributes: [{
+    requireSpecificAttributes: [
+        {
             html: 'lang'
-        }, {
+        },
+        {
             form: 'action'
-        }, {
+        },
+        {
             img: 'alt'
-        }, {
+        },
+        {
             input: 'type'
-        }, {
+        },
+        {
             'input[type=submit]': 'value'
         }
     ],
     requireStrictEqualityOperators: true,
-    validateAttributeQuoteMarks: '\'',
-    validateAttributeSeparator: [{
-        'separator': ', ',
-        'multiLineSeparator': '\n '
-    }],
+    validateAttributeQuoteMarks: "'",
+    validateAttributeSeparator: [
+        {
+            separator: ', ',
+            multiLineSeparator: '\n '
+        }
+    ],
     validateDivTags: true,
     validateExtensions: null,
     validateIndentation: 2,
