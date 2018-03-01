@@ -1,7 +1,6 @@
 # Node.
 node_modules
 bower
-.vscode
 .sass-cache
 .publish
 .vscode
