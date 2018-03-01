@@ -11,7 +11,20 @@ requireDir('./gulp/tasks', {
 });
 
 // The main building block task
-gulp.task('build', gulp.series('clean', 'svg', 'pug', 'favicons', 'fonts', 'scss', 'scripts', 'imagemin', 'assets'));
+gulp.task(
+    'build',
+    gulp.series(
+        'clean',
+        'svg',
+        'pug',
+        'favicons',
+        'fonts',
+        'scss',
+        'scripts',
+        'imagemin',
+        'assets'
+    )
+);
 
 // Function to properly reload your browser
 function reload(done) {

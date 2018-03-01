@@ -1,76 +1,68 @@
 {
-  "name": "project-boilerplate",
-  "version": "1.0.0",
-  "description": "This is a boilerplate starting point for new PUG projects",
-  "main": "gulpfile.js",
-  "author": "Eric Fuhrmann",
-  "license": "UNLICENSED",
-  "scripts": {
-    "test": "gulp test",
-    "start": "npm i",
-    "deploy": "gulp deploy",
-    "gulp": "gulp",
-    "build": "gulp build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ekfuhrmann/project-boilerplate"
-  },
-  "babel": {
-    "presets": [
-      "env"
-    ]
-  },
-  "keywords": [
-    "js",
-    "sass",
-    "api",
-    "stylus",
-    "gulp",
-    "npm"
-  ],
-  "devDependencies": {
-    "animate-scss": "^3.2.1",
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "*",
-    "babel-preset-es2015": "^6.24.1",
-    "browser-sync": "*",
-    "del": "*",
-    "eslint": "*",
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "*",
-    "gulp-babel": "*",
-    "gulp-concat": "*",
-    "gulp-cssfont64": "*",
-    "gulp-cssnano": "*",
-    "gulp-gh-pages": "*",
-    "gulp-gzip": "^1.4.0",
-    "gulp-if": "^2.0.1",
-    "gulp-imagemin": "*",
-    "gulp-load-plugins": "*",
-    "gulp-notify": "*",
-    "gulp-pug": "*",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "*",
-    "gulp-sourcemaps": "*",
-    "gulp-svgmin": "*",
-    "gulp-svgstore": "*",
-    "gulp-uglify": "*",
-    "gulp-uncss": "*",
-    "gulp-util": "^3.0.8",
-    "node-sass": "^4.5.3",
-    "require-dir": "*",
-    "stylelint": "^8.2.0",
-    "stylelint-order": "^0.4.4",
-    "stylelint-scss": "^1.4.4",
-    "stylelint-suitcss": "^1.0.0",
-    "super-gigi": "^1.17.0",
-    "yargs": "^8.0.1"
-  },
-  "dependencies": {
-    "clipboard": "^1.7.1",
-    "jquery": "^3.2.1",
-    "normalize-scss": "^5.0.3",
-    "svg4everybody": "^2.1.9"
-  }
+    "name": "project-boilerplate",
+    "version": "1.0.0",
+    "description": "This is a boilerplate starting point for new PUG projects",
+    "main": "gulpfile.js",
+    "author": "Eric Fuhrmann",
+    "license": "UNLICENSED",
+    "scripts": {
+        "test": "gulp test",
+        "start": "npm i",
+        "deploy": "gulp deploy",
+        "gulp": "gulp",
+        "build": "gulp build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ekfuhrmann/project-boilerplate"
+    },
+    "babel": {
+        "presets": ["env"]
+    },
+    "keywords": ["js", "sass", "api", "stylus", "gulp", "npm"],
+    "devDependencies": {
+        "animate-scss": "^3.2.1",
+        "babel-core": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-es2015": "^6.24.1",
+        "browser-sync": "^2.23.6",
+        "del": "^3.0.0",
+        "eslint": "^4.18.1",
+        "gulp": "^4.0.0",
+        "gulp-autoprefixer": "^5.0.0",
+        "gulp-babel": "^7.0.1",
+        "gulp-concat": "*",
+        "gulp-cssfont64": "*",
+        "gulp-cssnano": "*",
+        "gulp-gh-pages": "*",
+        "gulp-gzip": "^1.4.2",
+        "gulp-if": "^2.0.1",
+        "gulp-imagemin": "^4.1.0",
+        "gulp-load-plugins": "*",
+        "gulp-notify": "^3.2.0",
+        "gulp-pug": "*",
+        "gulp-rename": "^1.2.2",
+        "gulp-sass": "^3.1.0",
+        "gulp-sourcemaps": "^2.6.4",
+        "gulp-svgmin": "*",
+        "gulp-svgstore": "^6.1.1",
+        "gulp-uglify": "^3.0.0",
+        "gulp-uncss": "*",
+        "gulp-util": "^3.0.8",
+        "include-media": "^1.4.9",
+        "node-sass": "^4.5.3",
+        "pug-lint": "^2.5.0",
+        "require-dir": "^1.0.0",
+        "stylelint": "^9.1.1",
+        "stylelint-config-prettier": "*",
+        "stylelint-config-standard": "*",
+        "stylelint-order": "^0.8.1",
+        "stylelint-scss": "^2.4.0",
+        "stylelint-suitcss": "^3.0.0",
+        "yargs": "^8.0.1"
+    },
+    "dependencies": {
+        "normalize-scss": "^7.0.1",
+        "svg4everybody": "^2.1.9"
+    }
 }
