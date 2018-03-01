@@ -1,15 +1,15 @@
 // Raleway = Google Font
 // FONT FAMILY VARIABLES (used for calling font)
 @mixin font-family($family) {
-    @if ($family=='raleway') {
+    @if ($family== 'raleway') {
         font-family: 'Raleway', sans-serif;
     }
 
-    @else if ($family=='times-new-roman') {
+ @else if ($family== 'times-new-roman') {
         font-family: 'Times New Roman', serif;
     }
 
-    @else {
+ @else {
         font-family: 'Raleway', sans-serif;
     }
 }

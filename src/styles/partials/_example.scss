@@ -2,9 +2,19 @@ h1 {
     @include text('raleway', 48, 400, map-deep-get($colors, black, primary));
     align-items: center;
     display: inline-flex;
+
+    @include media('>=md', '<=lg') {
+        background-color: #647;
+        color: #fff;
+    }
+
+    @include media('>=lg') {
+        background-color: #237484;
+    }
 }
 
 .icon {
+    fill: currentColor;
     height: 20px;
     margin-left: $gridGap;
     width: 20px;

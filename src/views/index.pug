@@ -1,16 +1,16 @@
 extends templates/_default
 
-block includes  
+block includes
     include layouts/includes/_mixins
 
 //- Page Head Variables
 block vars
-    -var title = '';
-    -var description = '';  
+    - var title = '';
+    - var description = '';
 
 block content
     .svg__spritesheet
-        include ./layouts/includes/inline.svg 
+        include ./layouts/includes/inline.svg
 
     //- Footer
     include layouts/general/_footer
