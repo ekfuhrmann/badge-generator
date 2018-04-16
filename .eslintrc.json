@@ -1,55 +1,18 @@
 {
-    "extends": ["airbnb", "prettier"],
-    "plugins": ["prettier"],
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaVersion": 2017,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true
-        }
-    },
-    "globals": {
-        "ScrollMagic": false,
-        "TimelineLite": false,
-        "TimelineMax": false,
-        "TweenLite": false,
-        "TweenMax": false,
-        "Back": false,
-        "Bounce": false,
-        "Circ": false,
-        "Cubic": false,
-        "Ease": false,
-        "EaseLookup": false,
-        "Elastic": false,
-        "Expo": false,
-        "Linear": false,
-        "Power0": false,
-        "Power1": false,
-        "Power2": false,
-        "Power3": false,
-        "Power4": false,
-        "Quad": false,
-        "Quart": false,
-        "Quint": false,
-        "RoughEase": false,
-        "Sine": false,
-        "SlowMo": false,
-        "SteppedEase": false,
-        "Strong": false,
-        "Draggable": false,
-        "SplitText": false,
-        "VelocityTracker": false,
-        "CSSPlugin": false,
-        "ThrowPropsPlugin": false,
-        "BezierPlugin": false
-    },
-    "env": {
-        "es6": true,
-        "browser": true,
-        "node": true
-    },
-    "rules": {
-        "linebreak-style": 0
-    }
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "globals": {},
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "linebreak-style": 0
+  }
 }

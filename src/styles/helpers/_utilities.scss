@@ -1,126 +1,122 @@
 @mixin wrapper {
-    margin: 0 auto;
-    max-width: $wrapper-width;
-    position: relative;
-    width: 100%;
-    z-index: 10;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: $wrapper-width;
+  margin: 0 auto;
 }
 
 @mixin wrapper-half {
-    max-width: $wrapper-width/2;
-    position: relative;
-    width: 100%;
-    z-index: 10;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: $wrapper-width/2;
 }
 
 @mixin position(
-    $position: relative,
-    $top: null,
-    $right: null,
-    $bottom: null,
-    $left: null
+  $position: relative,
+  $top: null,
+  $right: null,
+  $bottom: null,
+  $left: null
 ) {
-    bottom: $bottom;
-    left: $left;
-    position: $position;
-    right: $right;
-    top: $top;
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
 }
 
 @mixin hide-text {
-    color: transparent;
-    font-size: 0;
-    text-indent: 101%;
-    white-space: nowrap;
+  color: transparent;
+  font-size: 0;
+  white-space: nowrap;
+  text-indent: 101%;
 }
 
 //  Function to create an optimized svg url (https://codepen.io/jakob-e/pen/doMoML)
 //  Version: 1.0.6
 @function svg-url($svg) {
-    //  Add missing namespace
-    @if not str-index($svg, xmlns) {
-        //  Chunk up string in order to avoid
-        $svg: str-replace(
-            $svg,
-            '<svg',
-            '<svg xmlns="http://www.w3.org/2000/svg"'
-        );
-    }
+  //  Add missing namespace
+  @if not str-index($svg, xmlns) {
+    //  Chunk up string in order to avoid
+    $svg: str-replace($svg, '<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+  }
 
-    //  "stack level too deep" error
-    $encoded: '';
-    $slice: 2000;
-    $index: 0;
-    $loops: ceil(str-length($svg) / $slice);
+  //  "stack level too deep" error
+  $encoded: '';
+  $slice: 2000;
+  $index: 0;
+  $loops: ceil(str-length($svg) / $slice);
 
-    @for $i from 1 through $loops {
-        $chunk: str-slice($svg, $index, $index + $slice - 1); //   Encode
-        $chunk: str-replace($chunk, '"', "'");
-        $chunk: str-replace($chunk, '%', '%25');
-        $chunk: str-replace($chunk, '#', '%23');
-        $chunk: str-replace($chunk, '{', '%7B');
-        $chunk: str-replace($chunk, '}', '%7D');
-        $chunk: str-replace($chunk, '<', '%3C');
-        $chunk: str-replace($chunk, '>', '%3E');
-        //    The maybe list
-        //
-        //    Keep size and compile time down
-        //    ... only add on documented fail
-        //
-        //  $chunk: str-replace($chunk, '&', '%26');
-        //  $chunk: str-replace($chunk, '|', '%7C');
-        //  $chunk: str-replace($chunk, '[', '%5B');
-        //  $chunk: str-replace($chunk, ']', '%5D');
-        //  $chunk: str-replace($chunk, '^', '%5E');
-        //  $chunk: str-replace($chunk, '`', '%60');
-        //  $chunk: str-replace($chunk, ';', '%3B');
-        //  $chunk: str-replace($chunk, '?', '%3F');
-        //  $chunk: str-replace($chunk, ':', '%3A');
-        //  $chunk: str-replace($chunk, '@', '%40');
-        //  $chunk: str-replace($chunk, '=', '%3D');
-        $encoded: #{$encoded}#{$chunk};
-        $index: $index + $slice;
-    }
+  @for $i from 1 through $loops {
+    $chunk: str-slice($svg, $index, $index + $slice - 1); //   Encode
+    $chunk: str-replace($chunk, '"', "'");
+    $chunk: str-replace($chunk, '%', '%25');
+    $chunk: str-replace($chunk, '#', '%23');
+    $chunk: str-replace($chunk, '{', '%7B');
+    $chunk: str-replace($chunk, '}', '%7D');
+    $chunk: str-replace($chunk, '<', '%3C');
+    $chunk: str-replace($chunk, '>', '%3E');
+    //    The maybe list
+    //
+    //    Keep size and compile time down
+    //    ... only add on documented fail
+    //
+    //  $chunk: str-replace($chunk, '&', '%26');
+    //  $chunk: str-replace($chunk, '|', '%7C');
+    //  $chunk: str-replace($chunk, '[', '%5B');
+    //  $chunk: str-replace($chunk, ']', '%5D');
+    //  $chunk: str-replace($chunk, '^', '%5E');
+    //  $chunk: str-replace($chunk, '`', '%60');
+    //  $chunk: str-replace($chunk, ';', '%3B');
+    //  $chunk: str-replace($chunk, '?', '%3F');
+    //  $chunk: str-replace($chunk, ':', '%3A');
+    //  $chunk: str-replace($chunk, '@', '%40');
+    //  $chunk: str-replace($chunk, '=', '%3D');
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
 
-    @return url('data:image/svg+xml,#{$encoded}');
+  @return url('data:image/svg+xml,#{$encoded}');
 }
 
 //  Background svg mixin
 @mixin background-svg($svg) {
-    background-image: svg-url($svg);
+  background-image: svg-url($svg);
 }
 
 //  Helper function to replace characters in a string
 @function str-replace($string, $search, $replace: '') {
-    $index: str-index($string, $search);
+  $index: str-index($string, $search);
 
-    @return if(
-        $index,
-        str-slice($string, 1, $index - 1) + $replace +
-            str-replace(
-                str-slice($string, $index + str-length($search)),
-                $search,
-                $replace
-            ),
-        $string
-    );
+  @return if(
+    $index,
+    str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      ),
+    $string
+  );
 }
 
-// Helper function to fetch deeply nested values from a map
+// Helper function to fetch deeply nested values from a map (such as colors)
 @function map-deep-get($map, $keys...) {
-    @each $key in $keys {
-        $map: map-get($map, $key);
-    }
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
 
-    @return $map;
+  @return $map;
 }
 
 @mixin overlay($color: map-deep-get($colors, green, primary), $opacity: 0.6) {
-    position: relative;
-    &::before {
-        @include position(absolute, 0, 0, 0, 0);
-        background-color: rgba($color, $opacity);
-        content: ' ';
-        display: block;
-    }
+  position: relative;
+  &::before {
+    @include position(absolute, 0, 0, 0, 0);
+    display: block;
+    background-color: rgba($color, $opacity);
+    content: ' ';
+  }
 }

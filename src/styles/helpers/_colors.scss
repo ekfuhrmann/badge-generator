@@ -1,63 +1,60 @@
 $colors: (
-    // Neutral Tints/Shades
-    black: (
-        primary: #242629,
-        lighten-1: #333437,
-        lighten-2: #4A4C51,
-        lighten-3: #5A5E65
+  // Neutral Tints/Shades
+    black:
+    (
+      primary: #242629,
+      lighten-1: #333437,
+      lighten-2: #4a4c51,
+      lighten-3: #5a5e65
     ),
-    white: (
-        primary: #FAFAFA,
-        darken-1: #EFEFEF,
-        darken-2: #C7CAD0,
-        darken-3: #979AA0
+  white:
+    (primary: #fafafa, darken-1: #efefef, darken-2: #c7cad0, darken-3: #979aa0),
+  / / Primary green:
+    (
+      primary: #1cccb6,
+      darken: #149989,
+      lighten-1: #41d6c5,
+      lighten-2: #6fe0d3,
+      lighten-3: #9febe2
     ),
-
-    // Primary
-    green: (
-        primary: #1CCCB6,
-        darken: #149989,
-        lighten-1: #41D6C5,
-        lighten-2: #6FE0D3,
-        lighten-3: #9FEBE2
+  / / Secondary blue:
+    (
+      primary: #22a8fa,
+      darken: #218bcb,
+      lighten-1: #53bafe,
+      lighten-2: #88d0fe,
+      lighten-3: #c2e7ff
     ),
-
-    // Secondary
-    blue: (
-        primary: #22A8FA,
-        darken: #218BCB,
-        lighten-1: #53BAFE,
-        lighten-2: #88D0FE,
-        lighten-3: #C2E7FF
+  orange:
+    (
+      primary: #f8a141,
+      darken: #e48528,
+      lighten-1: #ffba74,
+      lighten-2: #ffd1a1,
+      lighten-3: #ffe8cf
     ),
-    orange: (
-        primary: #F8A141,
-        darken: #E48528,
-        lighten-1: #FFBA74,
-        lighten-2: #FFD1A1,
-        lighten-3: #FFE8CF
+  purple:
+    (
+      primary: #8870f7,
+      darken: #7563d6,
+      lighten-1: #9c8cfb,
+      lighten-2: #bbb0fd,
+      lighten-3: #ddd7fe
     ),
-    purple: (
-        primary: #8870F7,
-        darken: #7563D6,
-        lighten-1: #9C8CFB,
-        lighten-2: #BBB0FD,
-        lighten-3: #DDD7FE
+  red:
+    (
+      primary: #ff574e,
+      darken: #bc433f,
+      lighten-1: #fe7c75,
+      lighten-2: #ffbdb9,
+      lighten-3: #fedddc
     ),
-    red: (
-        primary: #FF574E,
-        darken: #BC433F,
-        lighten-1: #FE7C75,
-        lighten-2: #FFBDB9,
-        lighten-3: #FEDDDC
-    ),
-
-    // Tertiary
-    yellow: (
-        primary: #EADB2E,
-        darken: #D9CB29,
-        lighten-1: #F0E455,
-        lighten-2: #FEF9B8,
-        lighten-3: #FDFBDC
+  / / Tertiary yellow:
+    (
+      primary: #eadb2e,
+      darken: #d9cb29,
+      lighten-1: #f0e455,
+      lighten-2: #fef9b8,
+      lighten-3: #fdfbdc
     )
 );

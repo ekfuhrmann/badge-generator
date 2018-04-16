@@ -8,61 +8,52 @@
 // }
 
 @mixin text-underline-crop($background) {
-    text-shadow:
-        0.03em 0 $background,
-        -0.03em 0 $background,
-        0 0.03em $background,
-        0 -0.03em $background,
-        0.06em 0 $background,
-        -0.06em 0 $background,
-        0.09em 0 $background,
-        -0.09em 0 $background,
-        0.12em 0 $background,
-        -0.12em 0 $background,
-        0.15em 0 $background,
-        -0.15em 0 $background;
+  text-shadow: 0.03em 0 $background, -0.03em 0 $background, 0 0.03em $background,
+    0 -0.03em $background, 0.06em 0 $background, -0.06em 0 $background,
+    0.09em 0 $background, -0.09em 0 $background, 0.12em 0 $background,
+    -0.12em 0 $background, 0.15em 0 $background, -0.15em 0 $background;
 }
 
 @mixin text-underline($color-bg, $color-text, $thickness) {
-    background-image: linear-gradient($color-text, $color-text);
-    background-repeat: repeat-x;
+  background-image: linear-gradient($color-text, $color-text);
+  background-repeat: repeat-x;
 
-    @if ($thickness == 'thick') {
-        background-position: 0% 100%;
-        background-size: 1px 2px;
-    }
+  @if ($thickness == 'thick') {
+    background-position: 0% 100%;
+    background-size: 1px 2px;
+  }
 
-    @else {
-        background-position: 0% 92%;
-        background-size: 1px 1px;
-    }
+ @else {
+    background-position: 0% 92%;
+    background-size: 1px 1px;
+  }
 }
 
 @mixin text-selection($selection) {
-    &::selection {
-        @include text-underline-crop($selection);
-        background: $selection;
-        display: block;
-        width: 100%;
-    }
+  &::selection {
+    @include text-underline-crop($selection);
+    display: block;
+    width: 100%;
+    background: $selection;
+  }
 }
 
 @mixin link-underline($background, $text, $selection, $thickness: 'normal') {
-    @include text-underline-crop($background);
-    @include text-underline($background, $text, $thickness);
-    @include text-selection($selection);
+  @include text-underline-crop($background);
+  @include text-underline($background, $text, $thickness);
+  @include text-selection($selection);
+  color: $text;
+  text-decoration: none;
+
+  *,
+  *::after,
+  &::after,
+  *::before,
+  &::before {
+    text-shadow: none;
+  }
+
+  &:visited {
     color: $text;
-    text-decoration: none;
-
-    *,
-    *::after,
-    &::after,
-    *::before,
-    &::before {
-        text-shadow: none;
-    }
-
-    &:visited {
-        color: $text;
-    }
+  }
 }

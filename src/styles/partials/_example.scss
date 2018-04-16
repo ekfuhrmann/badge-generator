@@ -1,21 +1,21 @@
 h1 {
-    @include text('raleway', 48, 400, map-deep-get($colors, black, primary));
-    align-items: center;
-    display: inline-flex;
+  @include text('raleway', 48, 400, map-deep-get($colors, black, primary));
+  display: inline-flex;
+  align-items: center;
 
-    @include media('>=md', '<=lg') {
-        background-color: #647;
-        color: #fff;
-    }
+  @include media('>=md', '<=lg') {
+    color: #fff;
+    background-color: #647;
+  }
 
-    @include media('>=lg') {
-        background-color: #237484;
-    }
+  @include media('>=lg') {
+    background-color: #237484;
+  }
 }
 
 .icon {
-    fill: currentColor;
-    height: 20px;
-    margin-left: $gridGap;
-    width: 20px;
+  width: 20px;
+  height: 20px;
+  margin-left: $gridGap;
+  fill: currentColor;
 }
