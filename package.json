@@ -17,9 +17,18 @@
         "url": "https://github.com/ekfuhrmann/project-boilerplate"
     },
     "babel": {
-        "presets": ["env"]
+        "presets": [
+            "env"
+        ]
     },
-    "keywords": ["js", "sass", "api", "stylus", "gulp", "npm"],
+    "keywords": [
+        "js",
+        "sass",
+        "api",
+        "stylus",
+        "gulp",
+        "npm"
+    ],
     "devDependencies": {
         "animate-scss": "^3.2.1",
         "babel-core": "^6.26.0",
@@ -55,6 +64,7 @@
         "require-dir": "^1.0.0",
         "stylelint": "^9.1.1",
         "stylelint-config-prettier": "*",
+        "stylelint-config-rational-order": "0.0.2",
         "stylelint-config-standard": "*",
         "stylelint-order": "^0.8.1",
         "stylelint-scss": "^2.4.0",
