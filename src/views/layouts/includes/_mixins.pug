@@ -3,8 +3,8 @@
 
 //- General Mixins
 mixin inline-svg(svgName, className = null)
-    svg(class= className !== null ? className + ' ' + svgName : svgName)
-        use(xlink:href=`#${svgName}`)
+  svg(class= className !== null ? className + ' ' + svgName : svgName)
+    use(xlink:href=`#${svgName}`)
 
 mixin svg(svgName, className = null)
-    object(type='image/svg+xml' data=`/assets/svg/${svgName}.svg` class= className !== null ? className + ' ' + svgName : svgName)
+  object(type='image/svg+xml' data=`/assets/svg/${svgName}.svg` class= className !== null ? className + ' ' + svgName : svgName)

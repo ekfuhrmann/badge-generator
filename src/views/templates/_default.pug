@@ -8,18 +8,18 @@ block vars
 
 doctype html
 html(lang='en-US')
-    head
-        +headContent(title, description)
-        block head
+  head
+    +headContent(title, description)
+    block head
 
-    body
-        block content
+  body
+    block content
 
-        //- Scripts
-        if productionMode
-            script(src='assets/javascript/main.min.js')
-        else
-            script(src='assets/javascript/main.js')
+    //- Scripts
+    if productionMode
+      script(src='assets/javascript/main.min.js')
+    else
+      script(src='assets/javascript/main.js')
 
-        block scripts
-        //- If extra scripts are needed replace here
+    block scripts
+    //- If extra scripts are needed replace here

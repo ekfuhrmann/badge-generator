@@ -1,19 +1,19 @@
 mixin headContent(title, description)
-    title= title
-    //- Only add a description if one is defined for the specific page
-    if ( description.length > 0 )
-        meta(name='description' content= description)
-    meta(charset='UTF-8')
-    meta(http-equiv='X-UA-Compatible' content='IE=edge')
-    meta(name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no')
-    meta(name='apple-mobile-web-app-capable' content='yes')
-    meta(name='apple-mobile-web-app-status-bar-style' content='black-translucent')
+  title= title
+  //- Only add a description if one is defined for the specific page
+  if ( description.length > 0 )
+    meta(name='description' content= description)
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no')
+  meta(name='apple-mobile-web-app-capable' content='yes')
+  meta(name='apple-mobile-web-app-status-bar-style' content='black-translucent')
 
-    //- Styles
-    if ( productionMode )
-        link(rel='stylesheet' href='assets/stylesheets/main.min.css')
-    else
-        link(rel='stylesheet' href='assets/stylesheets/main.css')
+  //- Styles
+  if ( productionMode )
+    link(rel='stylesheet' href='assets/stylesheets/main.min.css')
+  else
+    link(rel='stylesheet' href='assets/stylesheets/main.css')
 
-    //- If extra head content is necessary per page
-    block head
+  //- If extra head content is necessary per page
+  block head
