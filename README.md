@@ -1,5 +1,6 @@
 ## About
 
+<<<<<<< HEAD
 This repository is a boilerplate for new `.pug` projects.
 
 ## To Use With Existing Commits
@@ -28,3 +29,6 @@ Read more <a href="https://help.github.com/articles/duplicating-a-repository/">h
 ## Important
 
 Be sure to run `yarn install` or `npm install` on the new repository once it has been mirrored to.
+=======
+This is the development repo for Phrases.
+>>>>>>> 00fa2c6a996d830f3b4ca7b1874f66ed7156710e
