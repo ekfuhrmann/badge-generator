@@ -1,6 +1,5 @@
 $colors: (
-  // Neutral Tints/Shades
-    black:
+  black:
     (
       primary: #242629,
       lighten-1: #333437,
@@ -9,7 +8,7 @@ $colors: (
     ),
   white:
     (primary: #fafafa, darken-1: #efefef, darken-2: #c7cad0, darken-3: #979aa0),
-  / / Primary green:
+  green:
     (
       primary: #1cccb6,
       darken: #149989,
@@ -17,7 +16,7 @@ $colors: (
       lighten-2: #6fe0d3,
       lighten-3: #9febe2
     ),
-  / / Secondary blue:
+  blue:
     (
       primary: #22a8fa,
       darken: #218bcb,
@@ -49,7 +48,7 @@ $colors: (
       lighten-2: #ffbdb9,
       lighten-3: #fedddc
     ),
-  / / Tertiary yellow:
+  yellow:
     (
       primary: #eadb2e,
       darken: #d9cb29,

@@ -11,7 +11,6 @@ $breakpoints: (
 @import 'normalize-scss/sass/normalize'; // loaded from node_modules
 
 // VENDORS
-@import 'animate-scss/animate.scss'; // loaded from node_modules
 @import 'include-media/dist/_include-media.scss'; // loaded from node_modules
 @import 'vendors/viewport-text';
 @import 'vendors/link-underline';

@@ -1,19 +1,13 @@
-'use strict'
-const gulp = require('gulp')
-const plugins = require('gulp-load-plugins')
-const $ = plugins()
-const config = require('../config')
+'use strict';
+const gulp = require('gulp');
+const plugins = require('gulp-load-plugins');
+const $ = plugins();
+const config = require('../config');
+const imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 gulp.task('imagemin', () => {
-    return gulp.src('./src/assets/images/**/*')
-    .pipe($.imagemin({
-        progressive: true,
-        multipass: true,
-        optimizationLevel: 3,
-        svgoPlugins: [{
-            removeViewBox: false,
-            removeDimensions: true
-        }]
-    }))
-    .pipe(gulp.dest(`${config.distFolder}/assets/images`))
-})
+  return gulp
+    .src('./src/assets/images/**/*')
+    .pipe($.imagemin([imageminJpegRecompress()]))
+    .pipe(gulp.dest(`${config.distFolder}/assets/images`));
+});

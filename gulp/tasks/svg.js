@@ -11,12 +11,7 @@ gulp.task('svg', () => {
       $.svgmin({
         plugins: [
           {
-            removeStyleElement: false
-          },
-          {
-            // removeAttrs: {
-            //   attrs: ['fill', 'stroke', 'fill.*', 'stroke.*']
-            // }
+            mergePaths: false
           }
         ]
       })
@@ -31,11 +26,11 @@ gulp.task('svg:inline', () => {
       $.svgmin({
         plugins: [
           {
-            removeStyleElement: true
+            removeUselessStrokeAndFill: false
           },
           {
             removeAttrs: {
-              attrs: ['fill', 'stroke', 'fill.*!opacity', 'stroke.*']
+              attrs: ['fill.*', 'stroke.*']
             }
           }
         ]
@@ -52,18 +47,11 @@ gulp.task('svg:external', () => {
       $.svgmin({
         plugins: [
           {
-            removeStyleElement: true
-          },
-          {
             removeAttrs: {
-              attrs: ['fill', 'stroke', 'fill.*', 'stroke.*']
+              attrs: ['fill.*', 'stroke.*']
             }
           }
         ]
-        // Uncomment below for pretty SVG output
-        // ,js2svg: {
-        //   pretty: true
-        // }
       })
     )
     .pipe(gulp.dest(`${config.distFolder}/assets/svg`));

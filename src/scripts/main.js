@@ -1,1 +1,3 @@
-console.log('Boilerplate Template - https://github.com/ekfuhrmann/project-boilerplate');
+import smoothscroll from 'smoothscroll-polyfill';
+
+smoothscroll.polyfill();
