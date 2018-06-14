@@ -72,7 +72,6 @@
     "imagemin-jpeg-recompress": "^5.1.0",
     "normalize-scss": "^7.0.1",
     "smoothscroll-polyfill": "^0.4.3",
-    "svg4everybody": "^2.1.9",
     "webpack-stream": "^4.0.3"
   }
 }

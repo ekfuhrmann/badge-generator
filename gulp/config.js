@@ -11,10 +11,8 @@ module.exports = {
   // Stuff for UnCss
   uncssHtml: ['./dist/index.html'],
   uncssIgnore: [''],
-  // Here you add the paths to the full-length js files from node_modules
   scriptFiles: [
-    './node_modules/svg4everybody/dist/svg4everybody.min.js',
-    './src/scripts/**/*.js'
+    './src/scripts/main.js'
   ],
   // Path to un-worked font files
   fonts: ['./src/fonts/*.otf', './src/fonts/*.ttf'],
