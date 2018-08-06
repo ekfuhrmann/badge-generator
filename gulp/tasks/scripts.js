@@ -16,7 +16,13 @@ gulp.task('scripts', () => {
   return (
     gulp
       .src(config.scriptFiles)
-      .pipe(webpack())
+      .pipe(
+        when(
+          production,
+          webpack({ mode: 'production' }),
+          webpack({ mode: 'development' })
+        )
+      )
       .on('error', function(err) {
         $.notify.onError('Error: <%= error.message %>');
         this.emit('end');
