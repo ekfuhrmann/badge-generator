@@ -1,9 +1,9 @@
 'use strict';
 const gulp = require('gulp');
-const plugins = require('gulp-load-plugins');
-const $ = plugins();
-const config = require('../config');
 const when = require('gulp-if');
+const notify = require('gulp-notify');
+const pug = require('gulp-pug');
+const size = require('gulp-size');
 
 const argv = require('yargs').argv;
 // Check if gulp scripts --prod or --production has been added to the task
@@ -17,7 +17,7 @@ const devLocals = {
 
 const prodLocals = {
   base: '',
-  extension: config.productionExtension,
+  extension: '.html',
   productionMode: true
 };
 
@@ -27,23 +27,24 @@ gulp.task('pug', () => {
     .pipe(
       when(
         !production,
-        $.pug({
+        pug({
           pretty: true,
           basedir: './src/views',
           locals: devLocals
         })
       )
     )
-    .on('error', $.notify.onError('Error: <%= error.message %>'))
+    .on('error', notify.onError('Error: <%= error.message %>'))
     .pipe(
       when(
         production,
-        $.pug({
+        pug({
           basedir: './src/views',
           locals: prodLocals
         })
       )
     )
-    .on('error', $.notify.onError('Error: <%= error.message %>'))
-    .pipe(gulp.dest(config.distFolder));
+    .on('error', notify.onError('Error: <%= error.message %>'))
+    .pipe(size({ showFiles: true }))
+    .pipe(gulp.dest('./dist'));
 });

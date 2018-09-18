@@ -1,65 +1,51 @@
 'use strict';
 const gulp = require('gulp');
-const plugins = require('gulp-load-plugins');
-const $ = plugins();
-const webpack = require('webpack-stream');
-const config = require('../config');
-const when = require('gulp-if');
+const rollup = require('rollup');
+const babel = require('rollup-plugin-babel');
+const commonjs = require('rollup-plugin-commonjs');
+const filesize = require('rollup-plugin-filesize');
+const uglify = require('rollup-plugin-uglify');
+const resolve = require('rollup-plugin-node-resolve');
 
-// Check if gulp scripts --prod or --production has been added to the task
-const argv = require('yargs').argv;
-const production = argv.prod || argv.production;
-
-const destination = `${config.distFolder}/assets/javascript`;
-
-gulp.task('scripts', () => {
-  return (
-    gulp
-      .src(config.scriptFiles)
-      .pipe(
-        when(
-          production,
-          webpack({ mode: 'production' }),
-          webpack({ mode: 'development' })
-        )
-      )
-      .on('error', function(err) {
-        $.notify.onError('Error: <%= error.message %>');
-        this.emit('end');
-      })
-      .pipe(when(!production, $.sourcemaps.init()))
-      .pipe(
-        $.babel({
-          presets: ['env'],
-          ignore: ['./node_modules/']
-        })
-      )
-      .on('error', $.notify.onError('Error: <%= error.message %>'))
-      .pipe($.concat('main.js'))
-      .pipe(when(!production, $.sourcemaps.write('./')))
-      .pipe(gulp.dest(destination))
-
-      // All production stuff here
-      // Rename file to .min and uglify that stuff
-      .pipe(when(production, $.rename({ suffix: '.min' })))
-      .pipe(
-        when(
-          production,
-          $.uglify({
-            output: {
-              comments: 'some'
+const read = {
+  input: './src/js/main.js',
+  output: {
+    sourcemap: true
+  },
+  plugins: [
+    resolve({ jsnext: true, main: true }),
+    commonjs(),
+    babel({
+      babelrc: false,
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            modules: false,
+            targets: {
+              browsers: ['last 2 versions']
             }
-          })
-        )
-      )
-      .on('error', function(err) {
-        $.util.log($.util.colors.red('[Error]'), err.toString());
-        this.emit('end');
-      })
-      .pipe(when(production, gulp.dest(destination)))
+          }
+        ]
+      ],
+      ignore: ['./node_modules/'],
+      plugins: []
+    }),
+    uglify(),
+    filesize()
+  ]
+};
 
-      // Finally make it uber small with gzip
-      .pipe(when(production, $.gzip()))
-      .pipe(when(production, gulp.dest(destination)))
-  );
+const write = {
+  file: './dist/assets/js/bundle.js',
+  format: 'iife',
+  sourcemap: true,
+  output: {
+    name: 'bundle'
+  }
+};
+
+gulp.task('scripts', async () => {
+  const bundle = await rollup.rollup(read);
+  await bundle.write(write);
 });

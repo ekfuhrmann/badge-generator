@@ -1,29 +1,13 @@
 'use strict';
 const gulp = require('gulp');
-const plugins = require('gulp-load-plugins');
-const $ = plugins();
-const config = require('../config');
-
-gulp.task('svg', () => {
-  return gulp
-    .src('./src/svg/*.svg')
-    .pipe(
-      $.svgmin({
-        plugins: [
-          {
-            mergePaths: false
-          }
-        ]
-      })
-    )
-    .pipe(gulp.dest(`${config.distFolder}/assets/svg`));
-});
+const svgmin = require('gulp-svgmin');
+const svgstore = require('gulp-svgstore');
 
 gulp.task('svg:inline', () => {
   return gulp
     .src('./src/svg/inline/*.svg')
     .pipe(
-      $.svgmin({
+      svgmin({
         plugins: [
           {
             removeUselessStrokeAndFill: false
@@ -36,7 +20,7 @@ gulp.task('svg:inline', () => {
         ]
       })
     )
-    .pipe($.svgstore({ inlineSvg: true }))
+    .pipe(svgstore({ inlineSvg: true }))
     .pipe(gulp.dest('./src/views/layouts/includes'));
 });
 
@@ -44,7 +28,7 @@ gulp.task('svg:external', () => {
   return gulp
     .src('./src/svg/external/*.svg')
     .pipe(
-      $.svgmin({
+      svgmin({
         plugins: [
           {
             removeAttrs: {
@@ -54,7 +38,7 @@ gulp.task('svg:external', () => {
         ]
       })
     )
-    .pipe(gulp.dest(`${config.distFolder}/assets/svg`));
+    .pipe(gulp.dest(`./dist/assets/svg`));
 });
 
-gulp.task('svg', gulp.parallel('svg', 'svg:inline', 'svg:external'));
+gulp.task('svg', gulp.parallel('svg:inline', 'svg:external'));

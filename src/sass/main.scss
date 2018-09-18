@@ -3,18 +3,15 @@
 
 // VENDORS
 @import 'include-media/dist/_include-media.scss'; // loaded from node_modules
-@import 'vendors/viewport-text';
-@import 'vendors/link-underline';
 
 // HELPERS
 @import 'helpers/variables';
-@import 'helpers/colors';
 @import 'helpers/text';
 @import 'helpers/utilities';
 
 // PARTIALS
 // @import 'partials/example';
-// PAGES
+
 // BOX-SIZING - FONT-SIZING PRESETS
 html {
   box-sizing: border-box;
@@ -36,7 +33,7 @@ body {
 
 // Text Highlight Color
 ::selection {
-  background: map-deep-get($colors, blue, primary);
+  background: red;
 }
 
 // Hide inline spritesheet

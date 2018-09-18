@@ -1,26 +1,30 @@
 'use strict';
 const gulp = require('gulp');
-const plugins = require('gulp-load-plugins');
+const plumber = require('gulp-plumber');
+const changed = require('gulp-changed');
 const imagemin = require('gulp-imagemin');
-const config = require('../config');
-const imageminJpegtran = require('imagemin-jpegtran');
+const notify = require('gulp-notify');
+const mozjpeg = require('imagemin-mozjpeg');
+const size = require('gulp-size');
 
-gulp.task('imagemin', () => {
+gulp.task('images', () => {
   return gulp
-    .src('./src/assets/images/**/*')
+    .src('src/assets/images/**/*.{gif,jpg,png,svg}')
     .pipe(
-      imagemin(
-        [
-          imagemin.jpegtran({
-            progressive: false,
-            arithmetic: true
-          }),
-          imagemin.optipng({ optimizationLevel: 5 })
-        ],
-        {
-          verbose: true // Provides additional console info per-image
-        }
-      )
+      plumber({ errorHandler: notify.onError('Error: <%= error.message %>') })
     )
-    .pipe(gulp.dest(`${config.distFolder}/assets/images`));
+    .pipe(changed('dist/images'))
+    .pipe(
+      imagemin([
+        imagemin.gifsicle(),
+        mozjpeg({
+          quality: 80, // default is 75
+          progressive: true
+        }),
+        imagemin.optipng(),
+        imagemin.svgo()
+      ])
+    )
+    .pipe(size({ showFiles: true }))
+    .pipe(gulp.dest('dist/assets/images'));
 });
