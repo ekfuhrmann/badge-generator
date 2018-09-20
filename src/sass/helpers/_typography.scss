@@ -1,0 +1,55 @@
+@mixin font(
+  $name,
+  $size: false,
+  $responsive-size: false,
+  $color: false,
+  $weight: false,
+  $transform: false,
+  $line-height: false,
+  $letter-spacing: false
+) {
+  // Font Family (Required)
+  @if (to-lower-case($name) == 'arial') {
+    font-family: 'arial', sans-serif;
+  } @else if (to-lower-case($name) == 'times new roman') {
+    font-family: 'Times New Roman', serif;
+  } @else {
+    font-family: 'arial', sans-serif;
+  }
+
+  // Font Size
+  @if $size {
+    font-size: $size;
+  }
+
+  // Responsive Font Size (min + max value)
+  @if $responsive-size {
+    font-size: responsive $responsive-size;
+    font-range: 420px 1280px;
+  }
+
+  // Font Color
+  @if $color {
+    color: $color;
+  }
+
+  // Font Weight
+  @if $weight {
+    font-weight: $weight;
+  }
+
+  // Text Transform
+  @if $transform {
+    text-transform: $transform;
+  }
+
+  // Line Height
+  @if $line-height {
+    line-height: $line-height;
+  }
+
+  // Letter Spacing
+  @if $letter-spacing {
+    letter-spacing: $letter-spacing;
+  }
+}
