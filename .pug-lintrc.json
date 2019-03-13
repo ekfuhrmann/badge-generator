@@ -15,7 +15,7 @@
   "disallowSpecificAttributes": null,
   "disallowSpecificTags": null,
   "disallowStringConcatenation": true,
-  "disallowStringInterpolation": true,
+  "disallowStringInterpolation": null,
   "disallowTagInterpolation": true,
   "disallowTemplateString": null,
   "maximumNumberOfLines": null,

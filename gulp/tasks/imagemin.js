@@ -1,4 +1,3 @@
-'use strict';
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const changed = require('gulp-changed');
@@ -7,13 +6,20 @@ const notify = require('gulp-notify');
 const mozjpeg = require('imagemin-mozjpeg');
 const size = require('gulp-size');
 
-gulp.task('images', () => {
-  return gulp
+const dest = 'dist/assets/images';
+
+gulp.task('images', () =>
+  gulp
     .src('src/assets/images/**/*.{gif,jpg,png,svg}')
     .pipe(
-      plumber({ errorHandler: notify.onError('Error: <%= error.message %>') })
+      plumber({
+        errorHandler: notify.onError({
+          title: 'Gulp Task Error',
+          message: 'Error: <%= error.message %>'
+        })
+      })
     )
-    .pipe(changed('dist/images'))
+    .pipe(changed(dest))
     .pipe(
       imagemin([
         imagemin.gifsicle(),
@@ -26,5 +32,5 @@ gulp.task('images', () => {
       ])
     )
     .pipe(size({ showFiles: true }))
-    .pipe(gulp.dest('dist/assets/images'));
-});
+    .pipe(gulp.dest(dest))
+);

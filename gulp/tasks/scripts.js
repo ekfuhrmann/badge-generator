@@ -1,51 +1,85 @@
-'use strict';
 const gulp = require('gulp');
-const rollup = require('rollup');
+const when = require('gulp-if');
 const babel = require('rollup-plugin-babel');
 const commonjs = require('rollup-plugin-commonjs');
-const filesize = require('rollup-plugin-filesize');
-const uglify = require('rollup-plugin-uglify');
+const eslint = require('rollup-plugin-eslint');
+const uglify = require('rollup-plugin-uglify-es');
 const resolve = require('rollup-plugin-node-resolve');
+const rename = require('gulp-rename');
+const sourcemaps = require('gulp-sourcemaps');
+const notify = require('gulp-notify');
+const rollup = require('gulp-better-rollup');
+const changed = require('gulp-changed');
+const { argv } = require('yargs');
 
-const read = {
-  input: './src/js/main.js',
-  output: {
-    sourcemap: true
-  },
-  plugins: [
-    resolve({ jsnext: true, main: true }),
-    commonjs(),
-    babel({
-      babelrc: false,
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            modules: false,
-            targets: {
-              browsers: ['last 2 versions']
-            }
+// Check if gulp scripts --prod or --production has been added to the task
+const production = argv.prod || argv.production;
+
+const optionsProd = [
+  eslint,
+  uglify(),
+  resolve({ jsnext: true, main: true }),
+  commonjs(),
+  babel({
+    babelrc: false,
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          modules: false,
+          targets: {
+            browsers: ['last 2 versions']
           }
-        ]
-      ],
-      ignore: ['./node_modules/'],
-      plugins: []
-    }),
-    uglify(),
-    filesize()
-  ]
-};
+        }
+      ]
+    ],
+    ignore: ['./node_modules/']
+  })
+];
 
-const write = {
-  file: './dist/assets/js/bundle.js',
-  format: 'iife',
-  sourcemap: true,
-  output: {
-    name: 'bundle'
-  }
-};
+const optionsDev = [
+  eslint,
+  resolve({ jsnext: true, main: true }),
+  commonjs(),
+  babel({
+    babelrc: false,
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          modules: false,
+          targets: {
+            browsers: ['last 2 versions']
+          }
+        }
+      ]
+    ],
+    ignore: ['./node_modules/']
+  })
+];
 
-gulp.task('scripts', async () => {
-  const bundle = await rollup.rollup(read);
-  await bundle.write(write);
-});
+gulp.task('scripts', () =>
+  gulp
+    .src('./src/js/main.js')
+    .pipe(changed('./dist/assets/js'))
+    .pipe(when(!production, sourcemaps.init()))
+    .pipe(when(!production, rollup({ plugins: optionsDev }, { format: 'cjs' })))
+    .on(
+      'error',
+      notify.onError({
+        title: 'Gulp Task Error',
+        message: 'Error: <%= error.message %>'
+      })
+    )
+    .pipe(when(production, rollup({ plugins: optionsProd }, { format: 'cjs' })))
+    .on(
+      'error',
+      notify.onError({
+        title: 'Gulp Task Error',
+        message: 'Error: <%= error.message %>'
+      })
+    )
+    .pipe(rename({ basename: 'bundle' }))
+    .pipe(when(!production, sourcemaps.write('')))
+    .pipe(gulp.dest('./dist/assets/js/'))
+);

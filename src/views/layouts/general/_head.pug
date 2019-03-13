@@ -5,15 +5,15 @@ mixin headContent(title, description)
     meta(name='description' content= description)
   meta(charset='UTF-8')
   meta(http-equiv='X-UA-Compatible' content='IE=edge')
-  meta(name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
   meta(name='apple-mobile-web-app-capable' content='yes')
   meta(name='apple-mobile-web-app-status-bar-style' content='black-translucent')
 
   //- Styles
   if ( productionMode )
-    link(rel='stylesheet' href='assets/styles/main.min.css')
+    link(rel='stylesheet' href='assets/css/main.min.css')
   else
-    link(rel='stylesheet' href='assets/styles/main.css')
+    link(rel='stylesheet' href='assets/css/main.css')
 
   //- If extra head content is necessary per page
   block head

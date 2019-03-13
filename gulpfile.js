@@ -1,5 +1,3 @@
-'use strict';
-
 const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const requireDir = require('require-dir');
@@ -20,20 +18,34 @@ function reload(done) {
   done();
 }
 
-gulp.task('browser-sync', () => {
-  return browserSync.init({
+const sendMaps = (req, res, next) => {
+  const filename = req.url.split('/').pop();
+  const extension = filename.split('.').pop();
+
+  if (extension === 'js') {
+    // res.setHeader('X-SourceMap', '/assets/js/' + filename + '.map');
+  } else if (extension === 'css') {
+    res.setHeader('X-SourceMap', `/assets/css/${filename}.map`);
+  }
+
+  return next();
+};
+
+gulp.task('browser-sync', () =>
+  browserSync.init({
     server: {
       baseDir: './dist',
+      middleware: [sendMaps],
       serveStaticOptions: {
         extensions: ['html']
       }
     },
     port: 8000,
-    open: true,
-    notify: true,
+    open: false,
+    notify: false,
     logConnections: false
-  });
-});
+  })
+);
 
 gulp.task('watch', done => {
   gulp.watch('src/svg/inline/**/*', gulp.series('svg:inline', reload));

@@ -1,35 +1,51 @@
-'use strict';
-
-const prefixer = require('autoprefixer');
 const gulp = require('gulp');
+const when = require('gulp-if');
+const prefixer = require('autoprefixer');
 const plumber = require('gulp-plumber');
-const maps = require('gulp-sourcemaps');
+const changed = require('gulp-changed');
+const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
 const notify = require('gulp-notify');
-const notifier = require('node-notifier');
 const cssnano = require('cssnano');
+const gradients = require('postcss-easing-gradients');
 const rucksack = require('rucksack-css');
 const size = require('gulp-size');
+const { argv } = require('yargs');
 
-const destination = `./dist/css/`;
+// Check if gulp scripts --prod or --production has been added to the task
+const production = argv.prod || argv.production;
+
+const processorsProd = [
+  rucksack({ inputPseudo: false, quantityQueries: false }),
+  prefixer({ browsers: ['last 2 versions', 'ie 11'] }),
+  gradients(),
+  cssnano({ safe: true })
+];
 
 const processors = [
   rucksack({ inputPseudo: false, quantityQueries: false }),
   prefixer({ browsers: ['last 2 versions', 'ie 11'] }),
-  cssnano({ safe: true })
+  gradients()
 ];
 
-gulp.task('styles', () => {
-  return gulp
+gulp.task('styles', () =>
+  gulp
     .src('src/sass/main.scss')
     .pipe(
-      plumber({ errorHandler: notify.onError('Error: <%= error.message %>') })
+      plumber({
+        errorHandler: notify.onError({
+          title: 'Gulp Task Error',
+          message: 'Error: <%= error.message %>'
+        })
+      })
     )
-    .pipe(maps.init())
+    .pipe(changed('./dist/assets/css', { hasChanged: changed.compareContents }))
+    .pipe(when(!production, sourcemaps.init()))
     .pipe(sass({ includePaths: ['./node_modules/'] }))
-    .pipe(postcss(processors))
+    .pipe(when(!production, postcss(processors)))
+    .pipe(when(production, postcss(processorsProd)))
     .pipe(size({ showFiles: true }))
-    .pipe(maps.write('./maps', { addComment: false }))
-    .pipe(gulp.dest('./dist/assets/css'));
-});
+    .pipe(when(!production, sourcemaps.write('./', { addComment: false })))
+    .pipe(gulp.dest('./dist/assets/css'))
+);
