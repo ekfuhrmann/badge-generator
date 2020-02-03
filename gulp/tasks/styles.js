@@ -13,19 +13,21 @@ const rucksack = require('rucksack-css');
 const size = require('gulp-size');
 const { argv } = require('yargs');
 
+sass.compiler = require('node-sass');
+
 // Check if gulp scripts --prod or --production has been added to the task
 const production = argv.prod || argv.production;
 
 const processorsProd = [
   rucksack({ inputPseudo: false, quantityQueries: false }),
-  prefixer({ browsers: ['last 2 versions', 'ie 11'] }),
+  prefixer(),
   gradients(),
   cssnano({ safe: true })
 ];
 
 const processors = [
   rucksack({ inputPseudo: false, quantityQueries: false }),
-  prefixer({ browsers: ['last 2 versions', 'ie 11'] }),
+  prefixer(),
   gradients()
 ];
 
