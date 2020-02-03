@@ -38,7 +38,8 @@
     "VelocityTracker": false,
     "CSSPlugin": false,
     "ThrowPropsPlugin": false,
-    "BezierPlugin": false
+    "BezierPlugin": false,
+    "gtag": false
   },
   "env": {
     "es6": true,
@@ -49,19 +50,31 @@
     "linebreak-style": 0,
     "func-names": 0,
     "no-plusplus": "off",
-    "no-use-before-define": ["error", {
-      "variables": false
-    }],
+    "no-use-before-define": [
+      "error",
+      {
+        "variables": false
+      }
+    ],
     "no-return-assign": ["error", "except-parens"],
-    "no-param-reassign": ["error", {
-      "props": false
-    }],
-    "no-unused-vars": [2, {
-      "vars": "all",
-      "args": "after-used"
-    }],
-    "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": true
-    }]
+    "no-param-reassign": [
+      "error",
+      {
+        "props": false
+      }
+    ],
+    "no-unused-vars": [
+      2,
+      {
+        "vars": "all",
+        "args": "after-used"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ]
   }
 }
