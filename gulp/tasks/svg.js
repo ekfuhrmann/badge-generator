@@ -13,7 +13,7 @@ gulp.task('svg:inline', () =>
           },
           {
             removeAttrs: {
-              attrs: ['fill.*', 'stroke.*']
+              attrs: '*:(stroke|fill):((?!^none$).)*'
             }
           }
         ]
