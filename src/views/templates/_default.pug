@@ -7,7 +7,7 @@ block includes
 block vars
 
 doctype html
-html(lang='en-US')
+html(dir='ltr' lang='en')
   head
     +headContent(title, description)
     block head
@@ -16,10 +16,7 @@ html(lang='en-US')
     block content
 
     //- Scripts
-    if productionMode
-      script(src='assets/js/bundle.min.js')
-    else
-      script(src='assets/js/bundle.js')
+    script(src='assets/js/scripts.js')
 
-    block scripts
     //- If extra scripts are needed
+    block scripts

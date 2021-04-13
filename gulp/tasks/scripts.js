@@ -1,85 +1,38 @@
-const gulp = require('gulp');
-const when = require('gulp-if');
-const babel = require('rollup-plugin-babel');
-const commonjs = require('rollup-plugin-commonjs');
-const eslint = require('rollup-plugin-eslint');
-const uglify = require('rollup-plugin-uglify-es');
-const resolve = require('@rollup/plugin-node-resolve');
-const rename = require('gulp-rename');
-const sourcemaps = require('gulp-sourcemaps');
-const notify = require('gulp-notify');
-const rollup = require('gulp-better-rollup');
-const changed = require('gulp-changed');
-const { argv } = require('yargs');
+import { src, dest } from 'gulp';
+import webpack from 'webpack-stream';
+import dotEnv from 'dotenv-webpack';
+import yargs from 'yargs';
 
-// Check if gulp scripts --prod or --production has been added to the task
-const production = argv.prod || argv.production;
+// Check for --prod or --production flag
+const PRODUCTION = yargs.argv.prod;
 
-const optionsProd = [
-  eslint,
-  uglify(),
-  resolve({ jsnext: true, main: true }),
-  commonjs(),
-  babel({
-    babelrc: false,
-    presets: [
-      [
-        '@babel/preset-env',
-        {
-          modules: false,
-          targets: {
-            browsers: ['last 2 versions']
-          }
-        }
-      ]
-    ],
-    ignore: ['./node_modules/']
-  })
-];
-
-const optionsDev = [
-  eslint,
-  resolve({ jsnext: true, main: true }),
-  commonjs(),
-  babel({
-    babelrc: false,
-    presets: [
-      [
-        '@babel/preset-env',
-        {
-          modules: false,
-          targets: {
-            browsers: ['last 2 versions']
-          }
-        }
-      ]
-    ],
-    ignore: ['./node_modules/']
-  })
-];
-
-gulp.task('scripts', () =>
-  gulp
-    .src('./src/js/main.js')
-    .pipe(changed('./dist/assets/js'))
-    .pipe(when(!production, sourcemaps.init()))
-    .pipe(when(!production, rollup({ plugins: optionsDev }, { format: 'cjs' })))
-    .on(
-      'error',
-      notify.onError({
-        title: 'Gulp Task Error',
-        message: 'Error: <%= error.message %>'
+const scripts = () => {
+  return src('src/js/main.js')
+    .pipe(
+      webpack({
+        module: {
+          rules: [
+            {
+              test: /\.js$/,
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: [],
+                },
+              },
+            },
+          ],
+        },
+        mode: PRODUCTION ? 'production' : 'development',
+        devtool: !PRODUCTION ? 'inline-source-map' : false,
+        output: {
+          filename: 'scripts.js',
+        },
+        // for .env
+        plugins: !PRODUCTION ? [new dotEnv()] : [],
       })
     )
-    .pipe(when(production, rollup({ plugins: optionsProd }, { format: 'cjs' })))
-    .on(
-      'error',
-      notify.onError({
-        title: 'Gulp Task Error',
-        message: 'Error: <%= error.message %>'
-      })
-    )
-    .pipe(rename({ basename: 'bundle' }))
-    .pipe(when(!production, sourcemaps.write('')))
-    .pipe(gulp.dest('./dist/assets/js/'))
-);
+    .pipe(dest('dist/assets/js'));
+};
+
+export default scripts;

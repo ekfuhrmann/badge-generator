@@ -1,7 +1,8 @@
 @mixin wrapper {
-  width: 100% - $site-gutter * 2;
-  max-width: $site-width;
   margin: 0 auto;
+  max-width: $site-width;
+  padding: 0 var(--spacing);
+  width: 100%;
 }
 
 @mixin position(
@@ -11,16 +12,16 @@
   $bottom: null,
   $left: null
 ) {
-  position: $position;
-  top: $top;
-  right: $right;
   bottom: $bottom;
   left: $left;
+  position: $position;
+  right: $right;
+  top: $top;
 }
 
 @mixin hide-text {
   color: transparent;
   font-size: 0;
-  white-space: nowrap;
   text-indent: 101%;
+  white-space: nowrap;
 }

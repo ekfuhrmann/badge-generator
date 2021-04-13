@@ -1,17 +1,18 @@
-const gulp = require('gulp');
-const notify = require('gulp-notify');
-const plumber = require('gulp-plumber');
+import { src, dest } from 'gulp';
+import notify from 'gulp-notify';
+import plumber from 'gulp-plumber';
 
-gulp.task('assets', () =>
-  gulp
-    .src(['./src/assets/**/*', '!./src/assets/images/**/*'])
+const assets = () => {
+  return src(['src/assets/**/*'])
     .pipe(
       plumber({
         errorHandler: notify.onError({
-          title: 'Gulp Task Error',
-          message: 'Error: <%= error.message %>'
-        })
+          title: 'Gulp Assets Error',
+          message: 'Error: <%= error.message %>',
+        }),
       })
     )
-    .pipe(gulp.dest(`./dist/assets/`))
-);
+    .pipe(dest(`dist/assets/`));
+};
+
+export default assets;

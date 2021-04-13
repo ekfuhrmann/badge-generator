@@ -1,0 +1,32 @@
+// Colors
+$white: #fff;
+$gallery: #eee;
+$slate-gray: #6f7f8f;
+$shark: #262628;
+
+// Breakpoints
+$breakpoints: (
+  xs: 320px,
+  sm: 550px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1440px,
+);
+
+// Settings
+$site-width: 1440px;
+$grid-gap: 1.6rem;
+$spacing: $grid-gap * 6.5;
+
+// CSS Variables
+:root {
+  --spacing: #{$spacing / 4};
+
+  @include media('>=sm') {
+    --spacing: #{$spacing / 2};
+  }
+
+  @include media('>=lg') {
+    --spacing: #{$spacing};
+  }
+}

@@ -1,6 +1,7 @@
-const gulp = require('gulp');
-const clean = require('del');
+import del from 'del';
 
-gulp.task('clean', () => clean([`./dist/**`, `!./dist`, './.publish']));
+const clean = () => {
+  return del(['dist']);
+};
 
-gulp.task('clean:git', () => clean(['./.git']));
+export default clean;

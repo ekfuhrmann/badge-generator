@@ -26,7 +26,8 @@
   "requireLowerCaseTags": true,
   "requireSpaceAfterCodeOperator": true,
   "requireSpacesInsideAttributeBrackets": null,
-  "requireSpecificAttributes": [{
+  "requireSpecificAttributes": [
+    {
       "html": "lang"
     },
     {
@@ -44,7 +45,7 @@
   "validateDivTags": true,
   "validateExtensions": null,
   "validateIndentation": 2,
-  "validateLineBreaks": "LF",
+  "validateLineBreaks": "CRLF",
   "validateSelfClosingTags": true,
   "validateTemplateString": true
 }

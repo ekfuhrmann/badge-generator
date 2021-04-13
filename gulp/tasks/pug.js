@@ -1,77 +1,76 @@
-const gulp = require('gulp');
-const when = require('gulp-if');
-const notify = require('gulp-notify');
-const pug = require('gulp-pug');
-const data = require('gulp-data');
-const size = require('gulp-size');
-const { argv } = require('yargs');
+import { src, dest } from 'gulp';
+import gulpif from 'gulp-if';
+import notify from 'gulp-notify';
+import gulpPug from 'gulp-pug';
+import data from 'gulp-data';
+import size from 'gulp-size';
+import yargs from 'yargs';
 
-// Check if gulp scripts --prod or --production has been added to the task
-const production = argv.prod || argv.production;
-const { deploy } = argv;
+// Check for --prod or --production flag
+const PRODUCTION = yargs.argv.prod;
+const { deploy } = yargs.argv;
 
 const devLocals = {
   base: '/',
   extension: '',
   productionMode: false,
-  deployMode: deploy
+  deployMode: deploy,
 };
 
 const prodLocals = {
   base: '',
   extension: '.html',
   productionMode: true,
-  deployMode: deploy
+  deployMode: deploy,
 };
 
-gulp.task('pug', () =>
-  gulp
-    .src('./src/views/**/!(_)*.pug')
+const pug = () => {
+  return src('src/views/**/!(_)*.pug')
     .pipe(
       // Get relative path to base directory
-      data(file => {
+      data((file) => {
         const relativePath = file.history[0].replace(file.base, '');
         const depth = (relativePath.match(/\//g) || []).length - 1;
         const relativeRoot =
           depth === 0 ? './' : new Array(depth + 1).join('./../');
-        return {
-          relativeRoot
-        };
+        return { relativeRoot };
       })
     )
     .pipe(
-      when(
-        !production,
-        pug({
+      gulpif(
+        !PRODUCTION,
+        gulpPug({
           pretty: true,
           basedir: './src/views',
-          locals: devLocals
+          locals: devLocals,
         })
       )
     )
     .on(
       'error',
       notify.onError({
-        title: 'Gulp Task Error',
-        message: 'Error: <%= error.message %>'
+        title: 'Gulp Pug Error',
+        message: 'Error: <%= error.message %>',
       })
     )
     .pipe(
-      when(
-        production,
-        pug({
+      gulpif(
+        PRODUCTION,
+        gulpPug({
           basedir: './src/views',
-          locals: prodLocals
+          locals: prodLocals,
         })
       )
     )
     .on(
       'error',
       notify.onError({
-        title: 'Gulp Task Error',
-        message: 'Error: <%= error.message %>'
+        title: 'Gulp Pug Error',
+        message: 'Error: <%= error.message %>',
       })
     )
     .pipe(size({ showFiles: true }))
-    .pipe(gulp.dest('./dist'))
-);
+    .pipe(dest('dist'));
+};
+
+export default pug;

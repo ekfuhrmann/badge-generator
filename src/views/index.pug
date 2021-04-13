@@ -1,16 +1,19 @@
 extends templates/_default
 
 block includes
-  include layouts/includes/_mixins
+  include layouts/includes/_mixins.pug
 
 //- Page Head Variables
 block vars
-  - var title = '';
+  - var title = 'Some New Site';
   - var description = '';
 
 block content
   .svg__spritesheet
     include ./layouts/includes/inline.svg
 
+  .wrapper
+    h1 Hello World
+
   //- Footer
-  include layouts/general/_footer
+  include layouts/general/_footer.pug

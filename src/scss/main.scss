@@ -1,8 +1,9 @@
-// NORMALIZE
-@import 'normalize-scss/sass/normalize'; // loaded from node_modules
+// NORMALIZE (loaded from node_modules)
+@import 'normalize-scss/sass/normalize';
 
-// VENDORS
-@import 'include-media/dist/_include-media.scss'; // loaded from node_modules
+// VENDORS (loaded from node_modules)
+@import 'include-media/dist/_include-media';
+@import 'rfs/scss';
 
 // HELPERS
 @import 'helpers/variables';
@@ -24,19 +25,25 @@ html {
 }
 
 body {
-  width: 100%;
-  min-width: 320px;
-  margin: 0;
-  overflow-x: hidden;
   font-size: 1rem; // = 16px default font size
-}
-
-// Text Highlight Color
-::selection {
-  background: red;
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 // Hide inline spritesheet
 .svg__spritesheet {
   display: none;
+}
+
+.wrapper {
+  @include wrapper;
+}
+
+.test {
+  display: block;
+  fill: red;
+  height: 100%;
+  width: 100%;
 }
