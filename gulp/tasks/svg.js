@@ -1,33 +1,33 @@
-const gulp = require('gulp');
-const svgmin = require('gulp-svgmin');
-const svgstore = require('gulp-svgstore');
+import { src, dest, parallel } from 'gulp';
+import svgmin from 'gulp-svgmin';
+import svgstore from 'gulp-svgstore';
 
-gulp.task('svg:inline', () =>
-  gulp
-    .src('./src/svg/inline/*.svg')
+export const svgInline = () => {
+  return src('src/svg/inline/*.svg')
     .pipe(
       svgmin({
         plugins: [
           {
-            removeUselessStrokeAndFill: false
+            removeUselessStrokeAndFill: false,
           },
           {
             removeAttrs: {
-              attrs: '*:(stroke|fill):((?!^none$).)*'
-            }
-          }
-        ]
+              attrs: '*:(stroke|fill):((?!^none$).)*',
+            },
+          },
+        ],
       })
     )
     .pipe(svgstore({ inlineSvg: true }))
-    .pipe(gulp.dest('./src/views/layouts/includes'))
-);
+    .pipe(dest('src/views/layouts/includes'));
+};
 
-gulp.task('svg:external', () =>
-  gulp
-    .src('./src/svg/external/*.svg')
+export const svgStandalone = () => {
+  return src('src/svg/standalone/*.svg')
     .pipe(svgmin())
-    .pipe(gulp.dest(`./dist/assets/svg`))
-);
+    .pipe(dest(`dist/assets/svg`));
+};
 
-gulp.task('svg', gulp.parallel('svg:inline', 'svg:external'));
+export const svg = parallel(svgInline, svgStandalone);
+
+export default svg;

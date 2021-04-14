@@ -11,3 +11,4 @@ bower
 *.swp
 .DS_Store
 dist
+.env

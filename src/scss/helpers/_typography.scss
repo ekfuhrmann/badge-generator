@@ -1,0 +1,162 @@
+// General Text Mixin
+@mixin font(
+  $name: false,
+  $size: false,
+  $color: false,
+  $weight: false,
+  $style: false,
+  $transform: false,
+  $line-height: false,
+  $letter-spacing: false
+) {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // Font Family
+  @if $name {
+    @if (to-lower-case($name) == 'arial') {
+      font-family: 'arial', sans-serif;
+    } @else if (to-lower-case($name) == 'times new roman') {
+      font-family: 'Times New Roman', serif;
+    } @else {
+      font-family: 'arial', sans-serif;
+    }
+  }
+
+  // Font Size (Fluid type < 1200px)
+  @if $size {
+    @include font-size($size);
+  }
+
+  // Font Color
+  @if $color {
+    color: $color;
+  }
+
+  // Font Weight
+  @if $weight {
+    font-weight: $weight;
+  }
+
+  // Font Style
+  @if $style {
+    font-style: $style;
+  }
+
+  // Text Transform
+  @if $transform {
+    text-transform: $transform;
+  }
+
+  // Line Height
+  @if $line-height {
+    line-height: $line-height;
+  }
+
+  // Letter Spacing
+  @if $letter-spacing {
+    letter-spacing: $letter-spacing;
+  }
+}
+
+/**  ===================
+   TEXT STYLES
+===================  **/
+@mixin font-h1($color: false, $weight: 700, $margin: false) {
+  @include font(
+    $name: 'arial',
+    $size: 5rem,
+    $weight: $weight,
+    $color: $color,
+    $line-height: 1.3
+  );
+
+  @if $margin {
+    margin: $margin;
+  }
+}
+
+@mixin font-h2($color: false, $weight: 400, $margin: false) {
+  @include font(
+    $name: 'arial',
+    $size: 3.6rem,
+    $weight: $weight,
+    $color: $color,
+    $line-height: 1.2
+  );
+
+  @if $margin {
+    margin: $margin;
+  }
+
+  strong {
+    font-weight: 800;
+  }
+}
+
+@mixin font-h3($color: false, $weight: 800, $margin: false) {
+  @include font(
+    $name: 'arial',
+    $size: 2.4rem,
+    $weight: $weight,
+    $color: $color
+  );
+
+  @if $margin {
+    margin: $margin;
+  }
+}
+
+@mixin font-h4(
+  $color: false,
+  $weight: 700,
+  $margin: false,
+  $letter-spacing: 0.2em
+) {
+  @include font(
+    $name: 'arial',
+    $size: 1.6rem,
+    $weight: $weight,
+    $color: $color,
+    $letter-spacing: $letter-spacing,
+    $transform: uppercase
+  );
+
+  @if $margin {
+    margin: $margin;
+  }
+}
+
+@mixin font-h5($color: false, $weight: 400, $margin: false) {
+  @include font(
+    $name: 'arial',
+    $size: 1.4rem,
+    $weight: $weight,
+    $color: $color
+  );
+
+  @if $margin {
+    margin: $margin;
+  }
+
+  strong {
+    font-weight: 800;
+  }
+}
+
+@mixin font-body($color: false, $weight: 400, $margin: false) {
+  @include font(
+    $name: 'times new roman',
+    $size: 1.8rem,
+    $weight: $weight,
+    $color: $color
+  );
+
+  @if $margin {
+    margin: $margin;
+  }
+
+  strong {
+    font-weight: 800;
+  }
+}

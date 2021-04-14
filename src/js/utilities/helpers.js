@@ -3,7 +3,7 @@
  * against multiple breakpoints, be sure to start with the LARGEST
  * breakpoint and then work your way down to smaller sizes.
  */
-export const checkMediaQuery = size => {
+export const checkMediaQuery = (size) => {
   let breakpoint;
 
   // Get sizes based on CSS breakpoints
@@ -36,7 +36,7 @@ export const throttle = (func, limit, ...args) => {
   let lastFunc;
   let lastRan;
 
-  return function() {
+  return function () {
     const context = this;
 
     if (!lastRan) {

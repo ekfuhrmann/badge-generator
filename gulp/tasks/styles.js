@@ -1,53 +1,26 @@
-const gulp = require('gulp');
-const when = require('gulp-if');
-const prefixer = require('autoprefixer');
-const plumber = require('gulp-plumber');
-const changed = require('gulp-changed');
-const sourcemaps = require('gulp-sourcemaps');
-const sass = require('gulp-sass');
-const postcss = require('gulp-postcss');
-const notify = require('gulp-notify');
-const cssnano = require('cssnano');
-const gradients = require('postcss-easing-gradients');
-const rucksack = require('rucksack-css');
-const size = require('gulp-size');
-const { argv } = require('yargs');
+import { src, dest } from 'gulp';
+import sourcemaps from 'gulp-sourcemaps';
+import sass from 'gulp-sass';
+import postcss from 'gulp-postcss';
+import rename from 'gulp-rename';
+import gulpif from 'gulp-if';
+import cleanCss from 'gulp-clean-css';
+import autoprefixer from 'autoprefixer';
+import yargs from 'yargs';
 
-sass.compiler = require('node-sass');
+// Check for --prod or --production flag
+const PRODUCTION = yargs.argv.prod;
 
-// Check if gulp scripts --prod or --production has been added to the task
-const production = argv.prod || argv.production;
+const styles = () => {
+  return src('src/scss/main.scss')
+    .pipe(gulpif(!PRODUCTION, sourcemaps.init()))
+    .pipe(sass({ includePaths: ['node_modules/'] }).on('error', sass.logError))
+    .pipe(gulpif(PRODUCTION, postcss([autoprefixer()])))
+    .pipe(gulpif(!PRODUCTION, postcss([])))
+    .pipe(gulpif(PRODUCTION, cleanCss({ compatibility: '*' })))
+    .pipe(gulpif(!PRODUCTION, sourcemaps.write()))
+    .pipe(rename({ basename: 'styles' }))
+    .pipe(dest('dist/assets/css'));
+};
 
-const processorsProd = [
-  rucksack({ inputPseudo: false, quantityQueries: false }),
-  prefixer(),
-  gradients(),
-  cssnano({ safe: true })
-];
-
-const processors = [
-  rucksack({ inputPseudo: false, quantityQueries: false }),
-  prefixer(),
-  gradients()
-];
-
-gulp.task('styles', () =>
-  gulp
-    .src('src/sass/main.scss')
-    .pipe(
-      plumber({
-        errorHandler: notify.onError({
-          title: 'Gulp Task Error',
-          message: 'Error: <%= error.message %>'
-        })
-      })
-    )
-    .pipe(changed('./dist/assets/css', { hasChanged: changed.compareContents }))
-    .pipe(when(!production, sourcemaps.init()))
-    .pipe(sass({ includePaths: ['./node_modules/'] }))
-    .pipe(when(!production, postcss(processors)))
-    .pipe(when(production, postcss(processorsProd)))
-    .pipe(size({ showFiles: true }))
-    .pipe(when(!production, sourcemaps.write('./', { addComment: false })))
-    .pipe(gulp.dest('./dist/assets/css'))
-);
+export default styles;
