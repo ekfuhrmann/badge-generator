@@ -7,12 +7,12 @@ This repository is a boilerplate for new `.pug` projects.
 Open up the command line and type these commands:</li>
 
 ```command
-$ git clone --bare https://github.com/ekfuhrmann/repo_setup.git
+$ git clone --bare https://github.com/ekfuhrmann/project-boilerplate.git
 # Make a bare clone of this repository
 ```
 
 ```command
-$ cd repo_setup
+$ cd project-boilerplate
 $ git push --mirror https://github.com/exampleuser/<new-repository>.git
 # Mirror-push to the new repository
 ```
