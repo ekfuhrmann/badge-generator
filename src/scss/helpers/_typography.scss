@@ -1,3 +1,20 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Montserrat';
+  font-weight: 800;
+  src: url('../fonts/montserrat/montserrat-extrabold-webfont.woff2')
+      format('woff2'),
+    url('../fonts/montserrat/montserrat-extrabold-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto';
+  font-weight: 500;
+  src: url('../fonts/roboto/roboto-medium-webfont.woff2') format('woff2'),
+    url('../fonts/roboto/roboto-medium-webfont.woff') format('woff');
+}
+
 // General Text Mixin
 @mixin font(
   $name: false,
@@ -14,12 +31,12 @@
 
   // Font Family
   @if $name {
-    @if (to-lower-case($name) == 'arial') {
-      font-family: 'arial', sans-serif;
-    } @else if (to-lower-case($name) == 'times new roman') {
-      font-family: 'Times New Roman', serif;
+    @if (to-lower-case($name) == 'roboto') {
+      font-family: 'Roboto', sans-serif;
+    } @else if (to-lower-case($name) == 'montserrat') {
+      font-family: 'Montserrat', sans-serif;
     } @else {
-      font-family: 'arial', sans-serif;
+      font-family: 'Roboto', sans-serif;
     }
   }
 
@@ -56,107 +73,5 @@
   // Letter Spacing
   @if $letter-spacing {
     letter-spacing: $letter-spacing;
-  }
-}
-
-/**  ===================
-   TEXT STYLES
-===================  **/
-@mixin font-h1($color: false, $weight: 700, $margin: false) {
-  @include font(
-    $name: 'arial',
-    $size: 5rem,
-    $weight: $weight,
-    $color: $color,
-    $line-height: 1.3
-  );
-
-  @if $margin {
-    margin: $margin;
-  }
-}
-
-@mixin font-h2($color: false, $weight: 400, $margin: false) {
-  @include font(
-    $name: 'arial',
-    $size: 3.6rem,
-    $weight: $weight,
-    $color: $color,
-    $line-height: 1.2
-  );
-
-  @if $margin {
-    margin: $margin;
-  }
-
-  strong {
-    font-weight: 800;
-  }
-}
-
-@mixin font-h3($color: false, $weight: 800, $margin: false) {
-  @include font(
-    $name: 'arial',
-    $size: 2.4rem,
-    $weight: $weight,
-    $color: $color
-  );
-
-  @if $margin {
-    margin: $margin;
-  }
-}
-
-@mixin font-h4(
-  $color: false,
-  $weight: 700,
-  $margin: false,
-  $letter-spacing: 0.2em
-) {
-  @include font(
-    $name: 'arial',
-    $size: 1.6rem,
-    $weight: $weight,
-    $color: $color,
-    $letter-spacing: $letter-spacing,
-    $transform: uppercase
-  );
-
-  @if $margin {
-    margin: $margin;
-  }
-}
-
-@mixin font-h5($color: false, $weight: 400, $margin: false) {
-  @include font(
-    $name: 'arial',
-    $size: 1.4rem,
-    $weight: $weight,
-    $color: $color
-  );
-
-  @if $margin {
-    margin: $margin;
-  }
-
-  strong {
-    font-weight: 800;
-  }
-}
-
-@mixin font-body($color: false, $weight: 400, $margin: false) {
-  @include font(
-    $name: 'times new roman',
-    $size: 1.8rem,
-    $weight: $weight,
-    $color: $color
-  );
-
-  @if $margin {
-    margin: $margin;
-  }
-
-  strong {
-    font-weight: 800;
   }
 }

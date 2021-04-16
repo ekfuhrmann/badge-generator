@@ -18,6 +18,7 @@ const scripts = () => {
                 loader: 'babel-loader',
                 options: {
                   presets: [],
+                  plugins: ['@babel/plugin-transform-runtime'],
                 },
               },
             },

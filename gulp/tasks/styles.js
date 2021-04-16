@@ -16,7 +16,6 @@ const styles = () => {
     .pipe(gulpif(!PRODUCTION, sourcemaps.init()))
     .pipe(sass({ includePaths: ['node_modules/'] }).on('error', sass.logError))
     .pipe(gulpif(PRODUCTION, postcss([autoprefixer()])))
-    .pipe(gulpif(!PRODUCTION, postcss([])))
     .pipe(gulpif(PRODUCTION, cleanCss({ compatibility: '*' })))
     .pipe(gulpif(!PRODUCTION, sourcemaps.write()))
     .pipe(rename({ basename: 'styles' }))
