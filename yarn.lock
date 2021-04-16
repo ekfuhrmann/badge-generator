@@ -4872,10 +4872,10 @@ htmlparser2@^3.10.0, htmlparser2@^3.9.1:
     inherits "^2.0.1"
     readable-stream "^3.1.1"
 
-htmlsvg@^1.1.17:
-  version "1.1.17"
-  resolved "https://registry.yarnpkg.com/htmlsvg/-/htmlsvg-1.1.17.tgz#4ac55b272dab3dd606c21a757d4354715e9898e0"
-  integrity sha512-5DoB4/6plo4Y5oQF+VVu69N0who395evt5WXF9/UWBztNmagERcnMq5DRYMpIZPHB8wtMXwEDOgegCKzPrvUPQ==
+htmlsvg@^1.1.18:
+  version "1.1.18"
+  resolved "https://registry.yarnpkg.com/htmlsvg/-/htmlsvg-1.1.18.tgz#9325f755ae2760e8e34df6d918372cb6c94f6d62"
+  integrity sha512-c43jWDkVuExX8S91/UFJ/lbatCZ5ZCR+YjMYa6hf3VVoJUNN0Bo60JJYz/GMnD8n4OZzSh0NaPsp8DP/AmibHw==
 
 http-cache-semantics@3.8.1:
   version "3.8.1"
