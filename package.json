@@ -55,6 +55,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-svgmin": "^3.0.0",
     "gulp-svgstore": "^7.0.1",
+    "opentype-layout": "^1.1.0",
     "postcss": "^8.2.10",
     "prettier": "^2.2.1",
     "pug-lint": "^2.6.0",

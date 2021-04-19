@@ -72,7 +72,7 @@ h1 {
   height: 35px;
   letter-spacing: 2.7px;
   margin: 0;
-  padding: 0 13px;
+  padding: 0 calc(13px - 2.7px) 0 13px;
   text-transform: uppercase;
 
   &[data-type='primary'] {

@@ -19,70 +19,46 @@ block content
       p.badge__tagline(data-type='primary') Fuck It
       p.badge__tagline(data-type='secondary') Ship It
 
-    svg(xmlns='http://www.w3.org/2000/svg' width='172.85' height='35' viewBox='0 0 172.85 35')
+    .temp
+
+    form
+      input.input(type='text')
+      input.input(type='text')
+      input.color(type='color' value='#5593c8')
+      input.color(type='color' value='#a7bfc1')
+      input.btn(type='submit' value='Generate SVG' name='submit')
+
+    svg.shadowSVG(xmlns='http://www.w3.org/2000/svg' height='35')
       defs
         style.
-          .cls-1 {
-            fill: #5593c8;
-          }
+          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Roboto:wght@500&display=swap');
 
-          .cls-2 {
-            fill: #a7bfc1;
-          }
-
-          .cls-3, .cls-6 {
-            font-size: 12px;
-            fill: #fff;
-            letter-spacing: 0.22em;
-          }
-
-          .cls-3 {
-            font-family: Roboto-Medium, Roboto;
-            font-weight: 500;
-          }
-
-          .cls-4 {
-            letter-spacing: 0.21em;
-          }
-
-          .cls-5 {
-            letter-spacing: 0.19em;
-          }
-
-          .cls-6 {
-            font-family: Montserrat-ExtraBold, Montserrat;
-            font-weight: 800;
-          }
-      g(id='Layer_2' data-name='Layer 2')
-        rect(class='cls-1' x='35.29' width='137.55' height='35')
-        rect(class='cls-2' width='86.24' height='35')
-        text(class='cls-3' x='13' y='22') FUCK IT
-        text(class='cls-6' x='98' y='22') SHIP IT
-
-    input.doot(type='text' data-type='primary')
-    input.doot(type='text' data-type='secondary')
-
-    svg.shadowSVG
-      defs
-        style.
           .shadowSVG__text {
             font-size: 12px;
             fill: #000;
             letter-spacing: 0.22em;
           }
 
-          .shadowSVG__text[data-type='primary'] {
-            font-family: Roboto-Medium, Roboto;
+          .shadowSVG__text:nth-of-type(1) {
+            font-family: Roboto, sans-serif;
             font-weight: 500;
           }
 
-          .shadowSVG__text[data-type='secondary'] {
-            font-family: Montserrat-ExtraBold, Montserrat;
+          .shadowSVG__text:nth-of-type(2) {
+            font-family: Montserrat, sans-serif;
             font-weight: 800;
           }
 
-      text.shadowSVG__text(x='13' y='22' data-type='primary')
-      text.shadowSVG__text(x='13' y='22' data-type='secondary')
+      rect.shadowSVG__rect(x='0' y='0' width='0' height='35')
+      rect.shadowSVG__rect(x='0' y='0' width='0' height='35')
+      text.shadowSVG__text(x='13' y='22')
+      text.shadowSVG__text(x='13' y='22')
+      br
+      br
+
+      <svg height='100'>
+        <path class='test'/>
+      </svg>
 
   //- Footer
   include layouts/general/_footer.pug

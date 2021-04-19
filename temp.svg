@@ -1,0 +1,28 @@
+<svg class="shadowSVG" xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 0 173.578125 35" width="173.578125">
+        <defs>
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&amp;family=Roboto:wght@500&amp;display=swap');
+
+            .shadowSVG__text {
+              font-size: 12px;
+              fill: #000;
+              letter-spacing: 0.22em;
+            }
+
+            .shadowSVG__text:nth-of-type(1) {
+              font-family: Roboto, sans-serif;
+              font-weight: 500;
+            }
+
+            .shadowSVG__text:nth-of-type(2) {
+              font-family: Montserrat, sans-serif;
+              font-weight: 800;
+            }
+
+          </style>
+        </defs>
+        <rect class="shadowSVG__rect" x="0" y="0" width="87.84375" height="35" fill="#5593c8"></rect>
+        <rect class="shadowSVG__rect" x="85.84375" y="0" width="87.734375" height="35" fill="#a7bfc1"></rect>
+        <text class="shadowSVG__text" x="13" y="22">FUCK IT</text>
+        <text class="shadowSVG__text" x="98.84375" y="22"> SHIP IT</text>
+      </svg>
