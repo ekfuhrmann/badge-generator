@@ -3,8 +3,12 @@ import opentype from 'opentype.js';
 import { load } from 'opentype.js';
 import computeLayout from 'opentype-layout';
 
+const formatText = (text) => {
+  return text.toUpperCase().split('').join(' ');
+};
+
 const repathData = (data) => {
-  const letterSpacing = -0.25;
+  const letterSpacing = -0.35;
   let mCount = -1;
   let mPos;
 
@@ -49,79 +53,12 @@ const repathData = (data) => {
         };
       default:
         throw new Error('invalid glyph path type: ' + type);
-
-      // if ((type === 'M' && y == 22) || (type === 'M' && y == 22)) {
-      //   mCount++;
-      // }
-
-      // if (type === 'Z') {
-      //   return {
-      //     type,
-      //   };
-      // }
-
-      // return {
-      //   type,
-
-      //   x: (x || 0) + mCount * 5,
-
-      //   ...(y === undefined ? {} : { y }),
-
-      //   ...(x1 === undefined ? {} : { x1 }),
-
-      //   ...(y1 === undefined ? {} : { y1 }),
-      // };
     }
   });
 };
 
-function spacePath(path) {
-  let mCount = -1;
-
-  return path
-    .map((command, index) => {
-      const x = String(command.x + mCount * 20);
-      const x1 = String(command.x1 + mCount * 20);
-      const x2 = String(command.x2 + mCount * 20);
-      const y = String(command.y);
-      const type = command.type;
-
-      switch (type) {
-        case 'Z':
-          return type;
-        case 'M':
-          // console.log(y);
-          if (y == 22) {
-            mCount++;
-            return [type + String(command.x + mCount * 20), y];
-          }
-        case 'L':
-          return [type + x, y].join(' ');
-        case 'Q':
-          return [type + x1, String(command.y1), x, y].join(' ');
-        case 'C':
-          return [
-            type + x1,
-            String(command.y1),
-            x2,
-            String(command.y2),
-            x,
-            y,
-          ].join(' ');
-        default:
-          throw new Error('invalid glyph path type: ' + type);
-      }
-    })
-    .join(' ');
-}
-
 // Reserved for scripts
 const main = () => {
-  // =============-=-=-=-=-==--=-=-=-=-=
-  // const text = document.querySelector('.cls-3');
-  // const width = text.getBBox().width();
-  // console.log(width);
-
   const input = document.querySelectorAll('.input');
   const color = document.querySelectorAll('.color');
   const shadowSVG = document.querySelector('.shadowSVG');
@@ -129,59 +66,17 @@ const main = () => {
   const svgRect = document.querySelectorAll('.shadowSVG__rect');
 
   async function make(string) {
-    // const doop = await opentype.load(
-    //   './assets/fonts/roboto/roboto-medium-webfont.woff',
-    //   (err, font) => {
-    //     if (err) throw err;
-
-    //     var fontSizePx = 12;
-    //     var text = 'Fuck It';
-    //     var scale = (1 / font.unitsPerEm) * fontSizePx;
-
-    //     // Layout some text - notice everything is in em units!
-    // var result = computeLayout(font, 'Fuck', {
-    // letterSpacing: 3 * font.unitsPerEm, // '2.5em' in font units
-    // });
-
-    //     // Array of characters after layout
-    // console.log(result.glyphs);
-
-    //     // Computed height after word-wrap
-    //     console.log(result.height);
-
-    //     return result;
-    //   }
-    // );
-
     const font = await opentype.load(
       './assets/fonts/roboto/roboto-medium-webfont.woff'
     );
 
-    // const doink = computeLayout(font, 'Fuck It', {
-    //   lineHeight: 2 * font.unitsPerEm, // '2.5em' in font units
-    // });
-    // console.log(doink);
-    // console.log(doink.glyphs[0].data.getPath());
-
-    // console.log(getSvgPath(doink.glyphs[0].data.getPath()));
-
-    const path = font.getPath(string, 13, 22, 12);
-
-    // console.log(font.glyphs);
-
-    // const doot = computeLayout(path);
-
-    // console.log('doot', doot);
+    const path = font.getPath(string, 13, 22, 12, { kerning: true });
 
     console.log(path);
 
     path.commands = repathData(path.commands);
-    //
-    // console.log(path.toPathData());
 
-    // console.log(spacePath(path.commands));
     const test = document.querySelector('.test');
-    // test.setAttributeNS(null, 'd', spacePath(path.commands));
     test.setAttributeNS(null, 'd', path.toPathData());
     // test.setAttributeNS(null, 'd', getSvgPath(doink.glyphs[0].data.getPath()));
   }
@@ -198,8 +93,11 @@ const main = () => {
 
   formBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('sub');
-    make('F U C K   I T');
+
+    setText(svgText[0], input[0].value);
+    setText(svgText[1], input[1].value);
+
+    make(formatText(input[0].value));
   });
 
   function setText(el, value) {
@@ -252,14 +150,4 @@ const main = () => {
   );
 };
 
-class Svg {
-  constructor() {}
-}
-
 document.addEventListener('DOMContentLoaded', main);
-
-// TODO: New plan is to have the user input and generate the badge via html dom element. We can than use math to calculate the spacing for the SVG which should work great. One key thing to remember is that CSS letter-spacing is applied to the last letter, so we also need to subtract that spacing from the final value in order to get an accurate word width calculation. Once that is taken care of, we can simply add the necessary padding and generate the SVG.
-
-// I think it would be best to handle the entire SVG styling via html node, and then convert that into an SVG once they have submitted the words/color styles.
-
-// https://vecta.io/blog/how-to-use-fonts-in-svg#:~:text=Because%20object%20tags%20are%20allowed%20to%20access%20external,will%20not%20be%20able%20to%20access%20these%20imports.
