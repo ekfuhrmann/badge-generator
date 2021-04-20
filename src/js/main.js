@@ -3,6 +3,118 @@ import opentype from 'opentype.js';
 import { load } from 'opentype.js';
 import computeLayout from 'opentype-layout';
 
+const repathData = (data) => {
+  const letterSpacing = -0.25;
+  let mCount = -1;
+  let mPos;
+
+  return data.map(({ x, y, x1, y1, x2, y2, type }, index) => {
+    switch (type) {
+      case 'Z':
+        return { type };
+      case 'M':
+        console.log({ mPos, x });
+        if (y == 22 || mPos + 3 < x) {
+          mPos = x;
+          mCount++;
+        }
+        return {
+          type,
+          x: (x || 0) + mCount * letterSpacing,
+          ...(y === undefined ? {} : { y }),
+        };
+      case 'L':
+        return {
+          type,
+          x: (x || 0) + mCount * letterSpacing,
+          y,
+        };
+      case 'Q':
+        return {
+          type,
+          x1: (x1 || 0) + mCount * letterSpacing,
+          y1,
+          x: (x || 0) + mCount * letterSpacing,
+          y,
+        };
+      case 'C':
+        return {
+          type,
+          x1: (x1 || 0) + mCount * letterSpacing,
+          y1,
+          x2: (x2 || 0) + mCount * letterSpacing,
+          y2,
+          x: (x || 0) + mCount * letterSpacing,
+          y,
+        };
+      default:
+        throw new Error('invalid glyph path type: ' + type);
+
+      // if ((type === 'M' && y == 22) || (type === 'M' && y == 22)) {
+      //   mCount++;
+      // }
+
+      // if (type === 'Z') {
+      //   return {
+      //     type,
+      //   };
+      // }
+
+      // return {
+      //   type,
+
+      //   x: (x || 0) + mCount * 5,
+
+      //   ...(y === undefined ? {} : { y }),
+
+      //   ...(x1 === undefined ? {} : { x1 }),
+
+      //   ...(y1 === undefined ? {} : { y1 }),
+      // };
+    }
+  });
+};
+
+function spacePath(path) {
+  let mCount = -1;
+
+  return path
+    .map((command, index) => {
+      const x = String(command.x + mCount * 20);
+      const x1 = String(command.x1 + mCount * 20);
+      const x2 = String(command.x2 + mCount * 20);
+      const y = String(command.y);
+      const type = command.type;
+
+      switch (type) {
+        case 'Z':
+          return type;
+        case 'M':
+          // console.log(y);
+          if (y == 22) {
+            mCount++;
+            return [type + String(command.x + mCount * 20), y];
+          }
+        case 'L':
+          return [type + x, y].join(' ');
+        case 'Q':
+          return [type + x1, String(command.y1), x, y].join(' ');
+        case 'C':
+          return [
+            type + x1,
+            String(command.y1),
+            x2,
+            String(command.y2),
+            x,
+            y,
+          ].join(' ');
+        default:
+          throw new Error('invalid glyph path type: ' + type);
+      }
+    })
+    .join(' ');
+}
+
 // Reserved for scripts
 const main = () => {
   // =============-=-=-=-=-==--=-=-=-=-=
@@ -16,7 +128,7 @@ const main = () => {
   const svgText = document.querySelectorAll('.shadowSVG__text');
   const svgRect = document.querySelectorAll('.shadowSVG__rect');
 
-  async function make() {
+  async function make(string) {
     // const doop = await opentype.load(
     //   './assets/fonts/roboto/roboto-medium-webfont.woff',
     //   (err, font) => {
@@ -27,12 +139,12 @@ const main = () => {
     //     var scale = (1 / font.unitsPerEm) * fontSizePx;
 
     //     // Layout some text - notice everything is in em units!
-    //     var result = computeLayout(font, text, {
-    //       letterSpacing: 3 * font.unitsPerEm, // '2.5em' in font units
-    //     });
+    // var result = computeLayout(font, 'Fuck', {
+    // letterSpacing: 3 * font.unitsPerEm, // '2.5em' in font units
+    // });
 
     //     // Array of characters after layout
-    //     console.log(result.glyphs);
+    // console.log(result.glyphs);
 
     //     // Computed height after word-wrap
     //     console.log(result.height);
@@ -45,15 +157,33 @@ const main = () => {
       './assets/fonts/roboto/roboto-medium-webfont.woff'
     );
 
-    const doink = computeLayout(font, 'Fuck It');
-    console.log(doink);
+    // const doink = computeLayout(font, 'Fuck It', {
+    //   lineHeight: 2 * font.unitsPerEm, // '2.5em' in font units
+    // });
+    // console.log(doink);
+    // console.log(doink.glyphs[0].data.getPath());
 
-    const path = font.getPath('FUCK IT', 13, 22, 12, { kerning: false });
+    // console.log(getSvgPath(doink.glyphs[0].data.getPath()));
+
+    const path = font.getPath(string, 13, 22, 12);
+
+    // console.log(font.glyphs);
+
+    // const doot = computeLayout(path);
+
+    // console.log('doot', doot);
 
     console.log(path);
-    console.log(path.toPathData());
+
+    path.commands = repathData(path.commands);
+    //
+    // console.log(path.toPathData());
+
+    // console.log(spacePath(path.commands));
     const test = document.querySelector('.test');
+    // test.setAttributeNS(null, 'd', spacePath(path.commands));
     test.setAttributeNS(null, 'd', path.toPathData());
+    // test.setAttributeNS(null, 'd', getSvgPath(doink.glyphs[0].data.getPath()));
   }
 
   input[0].addEventListener('keyup', (e) => {
@@ -69,7 +199,7 @@ const main = () => {
   formBtn.addEventListener('click', (e) => {
     e.preventDefault();
     console.log('sub');
-    make();
+    make('F U C K   I T');
   });
 
   function setText(el, value) {
