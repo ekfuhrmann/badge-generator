@@ -1,92 +1,53 @@
 // import htmlToSvg from 'htmlsvg';
 import opentype from 'opentype.js';
-import { load } from 'opentype.js';
-import computeLayout from 'opentype-layout';
-
-const formatText = (text) => {
-  return text.toUpperCase().split('').join(' ');
-};
-
-const repathData = (data) => {
-  const letterSpacing = -0.35;
-  let mCount = -1;
-  let mPos;
-
-  return data.map(({ x, y, x1, y1, x2, y2, type }, index) => {
-    switch (type) {
-      case 'Z':
-        return { type };
-      case 'M':
-        console.log({ mPos, x });
-        if (y == 22 || mPos + 3 < x) {
-          mPos = x;
-          mCount++;
-        }
-        return {
-          type,
-          x: (x || 0) + mCount * letterSpacing,
-          ...(y === undefined ? {} : { y }),
-        };
-      case 'L':
-        return {
-          type,
-          x: (x || 0) + mCount * letterSpacing,
-          y,
-        };
-      case 'Q':
-        return {
-          type,
-          x1: (x1 || 0) + mCount * letterSpacing,
-          y1,
-          x: (x || 0) + mCount * letterSpacing,
-          y,
-        };
-      case 'C':
-        return {
-          type,
-          x1: (x1 || 0) + mCount * letterSpacing,
-          y1,
-          x2: (x2 || 0) + mCount * letterSpacing,
-          y2,
-          x: (x || 0) + mCount * letterSpacing,
-          y,
-        };
-      default:
-        throw new Error('invalid glyph path type: ' + type);
-    }
-  });
-};
+import { badge, fontPaths, pathGenerator } from './partials/svgPath';
 
 // Reserved for scripts
 const main = () => {
   const input = document.querySelectorAll('.input');
   const color = document.querySelectorAll('.color');
   const shadowSVG = document.querySelector('.shadowSVG');
-  const svgText = document.querySelectorAll('.shadowSVG__text');
+  // const svgText = document.querySelectorAll('.shadowSVG__text');
   const svgRect = document.querySelectorAll('.shadowSVG__rect');
+  const svgText = document.querySelectorAll('.text');
 
-  async function make(string) {
-    const font = await opentype.load(
-      './assets/fonts/roboto/roboto-medium-webfont.woff'
-    );
+  // async function make(string) {
+  //   const font = await opentype.load(
+  //     './assets/fonts/roboto/roboto-medium-webfont.woff'
+  //   );
 
-    const path = font.getPath(string, 13, 22, 12, { kerning: true });
+  //   const path = font.getPath(string, 13, 22, 12, { kerning: true });
 
-    console.log(path);
+  //   console.log(path);
 
-    path.commands = repathData(path.commands);
-
-    const test = document.querySelector('.test');
-    test.setAttributeNS(null, 'd', path.toPathData());
-    // test.setAttributeNS(null, 'd', getSvgPath(doink.glyphs[0].data.getPath()));
-  }
+  //   // test.setAttributeNS(null, 'd', getSvgPath(doink.glyphs[0].data.getPath()));
+  // }
 
   input[0].addEventListener('keyup', (e) => {
-    setText(svgText[0], e.target.value);
+    // setText(svgText[0], e.target.value);
+
+    fontPaths({ primary: 'drink', secondary: 'd' });
+
+    pathGenerator(e.target.value, 'primary').then((res) => {
+      svgText[0].setAttributeNS(null, 'd', res.doot);
+
+      setTimeout(() => {
+        badge(res.size);
+      }, 10);
+    });
   });
 
   input[1].addEventListener('keyup', (e) => {
-    setText(svgText[1], e.target.value);
+    // setText(svgText[1], e.target.value);
+    const text = e.target.value;
+
+    pathGenerator(text, 'secondary').then((res) => {
+      svgText[1].setAttributeNS(null, 'd', res.doot);
+
+      setTimeout(() => {
+        badge(res.size);
+      }, 10);
+    });
   });
 
   const formBtn = document.querySelector('.btn');
@@ -94,14 +55,22 @@ const main = () => {
   formBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    setText(svgText[0], input[0].value);
-    setText(svgText[1], input[1].value);
+    // setText(svgText[0], input[0].value);
+    // setText(svgText[1], input[1].value);
 
-    make(formatText(input[0].value));
+    // make(formatText(input[0].value));
+
+    pathGenerator(input[0].value, 'primary').then((res) => {
+      svgText[0].setAttributeNS(null, 'd', res.doot);
+    });
+
+    pathGenerator(input[1].value, 'secondary').then((res) => {
+      svgText[1].setAttributeNS(null, 'd', res.doot);
+    });
   });
 
   function setText(el, value) {
-    el.textContent = value.toUpperCase();
+    text.toUpperCase().split('').join(' ');
 
     setTimeout(() => {
       generateSvg();
@@ -111,8 +80,8 @@ const main = () => {
   function generateSvg() {
     const primaryTextSize = svgText[0].getBBox().width;
     const secondaryTextSize = svgText[1].getBBox().width;
-    const primaryColor = color[0];
-    const totalSize = 0;
+
+    console.log(primaryTextSize);
 
     shadowSVG.setAttributeNS(
       null,

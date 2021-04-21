@@ -3078,11 +3078,6 @@ define-property@^2.0.2:
     is-descriptor "^1.0.2"
     isobject "^3.0.1"
 
-defined@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
-  integrity sha1-yY2bzvdWdBiOEQlpFRGZ45sfppM=
-
 del@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/del/-/del-6.0.0.tgz#0b40d0332cea743f1614f818be4feb717714c952"
@@ -4876,11 +4871,6 @@ htmlparser2@^3.10.0, htmlparser2@^3.9.1:
     entities "^1.1.1"
     inherits "^2.0.1"
     readable-stream "^3.1.1"
-
-htmlsvg@^1.1.17:
-  version "1.1.17"
-  resolved "https://registry.yarnpkg.com/htmlsvg/-/htmlsvg-1.1.17.tgz#4ac55b272dab3dd606c21a757d4354715e9898e0"
-  integrity sha512-5DoB4/6plo4Y5oQF+VVu69N0who395evt5WXF9/UWBztNmagERcnMq5DRYMpIZPHB8wtMXwEDOgegCKzPrvUPQ==
 
 http-cache-semantics@3.8.1:
   version "3.8.1"
@@ -6818,15 +6808,6 @@ onetime@^5.1.2:
   integrity sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==
   dependencies:
     mimic-fn "^2.1.0"
-
-opentype-layout@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/opentype-layout/-/opentype-layout-1.1.0.tgz#20926c80414e65c76f330127449a143d496a03dc"
-  integrity sha1-IJJsgEFOZcdvMwEnRJoUPUlqA9w=
-  dependencies:
-    defined "^1.0.0"
-    object-assign "^4.1.0"
-    word-wrapper "^1.0.7"
 
 opentype.js@^1.3.3:
   version "1.3.3"
@@ -9900,11 +9881,6 @@ with@^5.0.0:
   dependencies:
     acorn "^3.1.0"
     acorn-globals "^3.0.0"
-
-word-wrapper@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/word-wrapper/-/word-wrapper-1.0.7.tgz#1f14afebf66dfdf0fef55efd37184efbd08c28b6"
-  integrity sha1-HxSv6/Zt/fD+9V79NxhO+9CMKLY=
 
 wordwrap@0.0.2:
   version "0.0.2"
