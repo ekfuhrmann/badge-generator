@@ -1,6 +1,12 @@
 // import htmlToSvg from 'htmlsvg';
 import opentype from 'opentype.js';
-import { badge, fontPaths, pathGenerator } from './partials/svgPath';
+import {
+  badge,
+  convertToPath,
+  pathGenerator,
+  textToPath,
+  buildSvg,
+} from './partials/svgPath';
 
 // Reserved for scripts
 const main = () => {
@@ -26,7 +32,32 @@ const main = () => {
   input[0].addEventListener('keyup', (e) => {
     // setText(svgText[0], e.target.value);
 
-    fontPaths({ primary: 'drink', secondary: 'd' });
+    //  textToPath({
+    //     text: 'Hello',
+    //     type: 'primary',
+    //   })
+
+    // async function getAll() {
+    //   const boop = await Promise.all([
+    //     textToPath({
+    //       text: 'Hello',
+    //       type: 'primary',
+    //     }),
+    //   ]);
+
+    //   return boop;
+    // }
+
+    // getAll().then((result) => console.log(result));
+
+    // textToPath({
+    //   text: 'Hello',
+    //   type: 'primary',
+    // })
+
+    buildSvg('Test One', 'Test dossada');
+
+    // console.log(doot);
 
     pathGenerator(e.target.value, 'primary').then((res) => {
       svgText[0].setAttributeNS(null, 'd', res.doot);
