@@ -20,37 +20,17 @@ block content
     .temp
 
     form
-      input.input(type='text' value='ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-      input.input(type='text')
-      input.color(type='color' value='#5593c8')
+      input.input(type='text' value='Fuck It')
+      input.input(type='text' value='Ship It')
       input.color(type='color' value='#a7bfc1')
+      input.color(type='color' value='#5593c8')
       input.btn(type='submit' value='Generate SVG' name='submit')
 
-    svg.shadowSVG(xmlns='http://www.w3.org/2000/svg' height='35')
-      defs
-        style.
-          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Roboto:wght@500&display=swap');
-
-          .shadowSVG__text {
-            font-size: 12px;
-            fill: #000;
-            letter-spacing: 0.22em;
-          }
-
-          .shadowSVG__text:nth-of-type(1) {
-            font-family: Roboto, sans-serif;
-            font-weight: 500;
-          }
-
-          .shadowSVG__text:nth-of-type(2) {
-            font-family: Montserrat, sans-serif;
-            font-weight: 800;
-          }
-
-      rect.shadowSVG__rect(x='0' y='0' width='0' height='35')
-      rect.shadowSVG__rect(x='0' y='0' width='0' height='35')
-      path.text(fill='black')
-      path.text(fill='blue')
+    svg.svg(xmlns='http://www.w3.org/2000/svg' width='0' height='35')
+      rect.svg__rect(x='0' y='0' width='0' height='35')
+      rect.svg__rect(x='0' y='0' width='0' height='35')
+      path.svg__text
+      path.svg__text
 
   //- Footer
   include layouts/general/_footer.pug
