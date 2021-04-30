@@ -19,9 +19,14 @@
   top: $top;
 }
 
-@mixin hide-text {
-  color: transparent;
-  font-size: 0;
-  text-indent: 101%;
+@mixin visually-hidden {
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
   white-space: nowrap;
+  width: 1px;
 }

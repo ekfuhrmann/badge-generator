@@ -1,0 +1,40 @@
+.header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header__tagline,
+.header__title,
+.header__subtitle {
+  margin: 0;
+  width: 100%;
+
+  & + & {
+    margin-top: 20px;
+  }
+}
+
+.header__tagline {
+  fill: $mako;
+  height: 13px;
+  max-width: 75%;
+}
+
+.header__title {
+  fill: $white;
+  height: 45px;
+}
+
+.header__subtitle {
+  fill: $anakiwa;
+  height: 27px;
+  max-width: 65%;
+}
+
+.header__svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
