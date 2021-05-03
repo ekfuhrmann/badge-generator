@@ -35,8 +35,11 @@ const main = () => {
     // The generated string will be something like:
     // PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdm.........
 
+    // convert to data URI
+    const svgUri = `data:image/svg+xml;base64,${base64Data}`;
+
     // If you want to display it in the browser via URL:
-    console.log('data:image/svg+xml;base64,' + base64Data);
+    console.log(svgUri);
   });
 };
 
