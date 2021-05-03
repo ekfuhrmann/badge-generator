@@ -23,6 +23,20 @@ const main = () => {
   formBtn.addEventListener('click', (e) => {
     e.preventDefault();
     badge(input[0].value, input[1].value);
+
+    // 1. Keep a DOM reference to the SVG element
+    var SVGDomElement = document.querySelector('.svg');
+
+    // 2. Serialize element into plain SVG
+    var serializedSVG = new XMLSerializer().serializeToString(SVGDomElement);
+
+    // 3. convert svg to base64
+    var base64Data = window.btoa(serializedSVG);
+    // The generated string will be something like:
+    // PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdm.........
+
+    // If you want to display it in the browser via URL:
+    console.log('data:image/svg+xml;base64,' + base64Data);
   });
 };
 
