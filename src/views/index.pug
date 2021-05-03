@@ -12,34 +12,41 @@ block content
   .svg__spritesheet
     include ./layouts/includes/inline.svg
 
-  .wrapper
-    .header
-      h3.header__tagline
-        span.visually-hidden Badges For Badges' Sake
-        +inline-svg('tagline', 'header__svg')
-      h1.header__title
-        span.visually-hidden For The Badge
-        +inline-svg('title', 'header__svg')
-      h2.header__subtitle
-        span.visually-hidden Generator
-        +inline-svg('subtitle', 'header__svg')
+  main.main
+    header.header
+      .wrapper
+        .header__content
+          h3.header__tagline
+            span(data-visibility='hidden') Badges For Badges' Sake
+            +inline-svg('tagline', 'header__svg')
+          h1.header__title
+            span(data-visibility='hidden') For The Badge
+            +inline-svg('title', 'header__svg')
+          h2.header__subtitle
+            span(data-visibility='hidden') Generator
+            +inline-svg('subtitle', 'header__svg')
+          .header__chevrons
+            +inline-svg('chevron-down', 'header__chevron')
+            +inline-svg('chevron-down', 'header__chevron')
 
-    .badge
-      p.badge__tagline(data-type='primary') Fuck It
-      p.badge__tagline(data-type='secondary') Ship It
+    section.section
+      .wrapper
+        .section__card
+          h1 Example test
+        .section__card
 
-    form
-      input.input(type='text' value='Fuck It')
-      input.input(type='text' value='Ship It')
-      input.color(type='color' value='#a7bfc1')
-      input.color(type='color' value='#5593c8')
-      input.btn(type='submit' value='Generate SVG' name='submit')
+        form
+          input.input(type='text' value='Fuck It')
+          input.input(type='text' value='Ship It')
+          input.color(type='color' value='#a7bfc1')
+          input.color(type='color' value='#5593c8')
+          input.btn(type='submit' value='Generate SVG' name='submit')
 
-    svg.svg(xmlns='http://www.w3.org/2000/svg' width='0' height='35')
-      rect.svg__rect(x='0' y='0' width='0' height='35')
-      rect.svg__rect(x='0' y='0' width='0' height='35')
-      path.svg__text
-      path.svg__text
+        svg.svg(xmlns='http://www.w3.org/2000/svg' width='0' height='35')
+          rect.svg__rect(x='0' y='0' width='0' height='35')
+          rect.svg__rect(x='0' y='0' width='0' height='35')
+          path.svg__text
+          path.svg__text
 
   //- Footer
   include layouts/general/_footer.pug

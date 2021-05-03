@@ -1,4 +1,8 @@
 .header {
+  padding: var(--spacing) 0 calc(var(--spacing) / 2);
+}
+
+.header__content {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -37,4 +41,39 @@
   display: block;
   height: 100%;
   width: 100%;
+}
+
+.header__chevrons {
+  display: flex;
+  flex-direction: column;
+}
+
+.header__chevron {
+  fill: $white;
+  height: 13px;
+  margin-top: calc(var(--spacing) / 2);
+  width: 26px;
+
+  &:nth-child(1) {
+    animation: chevronBounce 1s ease-in-out infinite;
+  }
+
+  &:nth-child(2) {
+    animation: chevronBounce 1s -0.75s ease-in-out infinite;
+    margin-top: $grid-gap/8;
+  }
+}
+
+@keyframes chevronBounce {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(3px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }

@@ -42,54 +42,40 @@ body {
 
 .wrapper {
   @include wrapper;
-  margin: var(--spacing) 0;
   position: relative;
 }
 
-.visually-hidden {
+[data-visibility='hidden'] {
   @include visually-hidden;
 }
 
-h1 {
-  @include font($name: 'montserrat', $size: 5rem, $weight: 800, $color: black);
-  display: block;
-  height: 100%;
-  width: 100%;
-}
+.section__card {
+  background-color: $white;
+  border-radius: 50px;
+  min-height: 150px;
+  padding: 0 $grid-gap * 4;
 
-// svg {
-//   display: none;
-//   opacity: 0.5;
-//   position: absolute;
-//   top: 0;
-// }
+  &:first-of-type {
+    margin-top: $grid-gap * 4.25;
 
-.badge {
-  align-items: center;
-  align-items: stretch;
-  display: flex;
-  height: 35px;
-}
-
-.badge__tagline {
-  color: white;
-  display: block;
-  font-size: 12px;
-  height: 35px;
-  letter-spacing: 2.7px;
-  margin: 0;
-  padding: 0 calc(13px - 2.7px) 0 13px;
-  text-transform: uppercase;
-
-  &[data-type='primary'] {
-    @include font($name: 'roboto', $weight: 500);
-    background-color: #a7bfc1;
-    line-height: 35px;
+    &::before {
+      background: url('../svg/mark.svg') center center/contain no-repeat;
+      background-image: url('../svg/mark.svg');
+      content: '';
+      display: block;
+      height: 90px;
+      margin: auto;
+      margin-bottom: $grid-gap * -4.25;
+      transform: translateY($grid-gap * -4.25);
+      width: 78px;
+    }
   }
 
-  &[data-type='secondary'] {
-    @include font($name: 'montserrat', $weight: 800);
-    background-color: #5593c8;
-    line-height: 37px;
+  & + & {
+    margin-top: $grid-gap;
   }
+}
+
+.options {
+  //
 }
