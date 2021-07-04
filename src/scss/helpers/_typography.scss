@@ -1,23 +1,6 @@
-// @font-face {
-//   font-display: swap;
-//   font-family: 'Montserrat';
-//   font-weight: 800;
-//   src: url('../fonts/montserrat/montserrat-extrabold-webfont.woff2')
-//       format('woff2'),
-//     url('../fonts/montserrat/montserrat-extrabold-webfont.woff') format('woff');
-// }
-
-@font-face {
-  font-display: swap;
-  font-family: 'Roboto';
-  font-weight: 500;
-  src: url('../fonts/roboto/roboto-medium-webfont.woff2') format('woff2'),
-    url('../fonts/roboto/roboto-medium-webfont.woff') format('woff');
-}
-
 // General Text Mixin
 @mixin font(
-  $name: false,
+  // $name: false,
   $size: false,
   $color: false,
   $weight: false,
@@ -26,19 +9,9 @@
   $line-height: false,
   $letter-spacing: false
 ) {
+  font-family: brandon-grotesque, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  // Font Family
-  @if $name {
-    @if (to-lower-case($name) == 'roboto') {
-      font-family: 'Roboto', sans-serif;
-    } @else if (to-lower-case($name) == 'montserrat') {
-      font-family: 'Montserrat', sans-serif;
-    } @else {
-      font-family: 'Roboto', sans-serif;
-    }
-  }
 
   // Font Size (Fluid type < 1200px)
   @if $size {
