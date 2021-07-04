@@ -104,7 +104,7 @@ const badge = async (textPrimary, textSecondary) => {
   const svg = document.querySelector('.svg');
   const svgRect = document.querySelectorAll('.svg__rect');
   const svgText = document.querySelectorAll('.svg__text');
-  const color = document.querySelectorAll('.color');
+  const color = document.querySelectorAll('.form__color');
 
   // draw primary text path
   const primary = await textToPath({
@@ -123,9 +123,17 @@ const badge = async (textPrimary, textSecondary) => {
   svg.setAttributeNS(
     null,
     'viewBox',
-    `0 0 ${primary.size + secondary.size + 52} 35`
+    `0 0 ${
+      (primary.size ? primary.size + 26 : 0) +
+      (secondary.size ? secondary.size + 26 : 0)
+    } 35`
   );
-  svg.setAttributeNS(null, 'width', primary.size + secondary.size + 52);
+  svg.setAttributeNS(
+    null,
+    'width',
+    (primary.size ? primary.size + 26 : 0) +
+      (secondary.size ? secondary.size + 26 : 0)
+  );
 
   // update path 'd' attribute
   svgText[0].setAttributeNS(null, 'd', primary.path);

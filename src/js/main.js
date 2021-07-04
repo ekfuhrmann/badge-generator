@@ -3,8 +3,8 @@ import badge from './partials/badge';
 
 // Reserved for scripts
 const main = () => {
-  const input = document.querySelectorAll('.input');
-  const formBtn = document.querySelector('.btn');
+  const input = document.querySelectorAll('.form__input');
+  const formBtn = document.querySelector('.form__btn');
 
   // build svg on load using default values
   badge(input[0].value, input[1].value);
@@ -15,7 +15,7 @@ const main = () => {
   });
 
   // build svg while adding secondary input values
-  input[1].addEventListener('ke9yup', (e) => {
+  input[1].addEventListener('keyup', (e) => {
     badge(input[0].value, input[1].value);
   });
 

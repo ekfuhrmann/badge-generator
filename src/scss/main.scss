@@ -11,7 +11,9 @@
 @import 'helpers/utilities';
 
 // PARTIALS
+@import 'partials/form';
 @import 'partials/header';
+@import 'partials/section';
 
 // BOX-SIZING - FONT-SIZING PRESETS
 html {
@@ -47,33 +49,6 @@ body {
 
 [data-visibility='hidden'] {
   @include visually-hidden;
-}
-
-.section__card {
-  background-color: $white;
-  border-radius: 50px;
-  min-height: 150px;
-  padding: 0 $grid-gap * 4;
-
-  &:first-of-type {
-    margin-top: $grid-gap * 4.25;
-
-    &::before {
-      background: url('../svg/mark.svg') center center/contain no-repeat;
-      background-image: url('../svg/mark.svg');
-      content: '';
-      display: block;
-      height: 90px;
-      margin: auto;
-      margin-bottom: $grid-gap * -4.25;
-      transform: translateY($grid-gap * -4.25);
-      width: 78px;
-    }
-  }
-
-  & + & {
-    margin-top: $grid-gap;
-  }
 }
 
 .options {

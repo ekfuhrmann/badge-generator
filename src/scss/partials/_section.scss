@@ -1,0 +1,33 @@
+.section {
+  // reserved
+}
+
+.section__card {
+  background-color: $white;
+  padding: $grid-gap * 3 $grid-gap * 4;
+  position: relative;
+
+  &:first-of-type {
+    background-color: $cararra;
+    margin-top: $grid-gap * 4.25;
+
+    &::before {
+      background: url('../svg/mark.svg') center center/contain no-repeat;
+      background-image: url('../svg/mark.svg');
+      content: '';
+      display: block;
+      height: 90px;
+      left: 0;
+      margin: auto;
+      // margin-bottom: $grid-gap * -4.25;
+      position: absolute;
+      right: 0;
+      transform: translateY($grid-gap * -7.25);
+      width: 78px;
+    }
+  }
+}
+
+.section__card-content {
+  // padding: $grid-gap * 1.5 0;
+}

@@ -32,21 +32,26 @@ block content
     section.section
       .wrapper
         .section__card
-          h1 Example test
+          .section__card-content
+            form.form
+              h2.form__title Primary
+              label.form__label
+                input.form__input(type='text' value='Fuck It')
+                span.form__label-text Label
+              input.form__color(type='color' value='#a7bfc1')
+
+              label.form__label
+                input.form__input(type='text' value='Ship It')
+                span.form__label-text Label
+
+              input.form__color(type='color' value='#5593c8')
+              input.form__btn(type='submit' value='Generate SVG' name='submit')
         .section__card
-
-        form
-          input.input(type='text' value='Fuck It')
-          input.input(type='text' value='Ship It')
-          input.color(type='color' value='#a7bfc1')
-          input.color(type='color' value='#5593c8')
-          input.btn(type='submit' value='Generate SVG' name='submit')
-
-        svg.svg(xmlns='http://www.w3.org/2000/svg' width='0' height='35')
-          rect.svg__rect(x='0' y='0' width='0' height='35')
-          rect.svg__rect(x='0' y='0' width='0' height='35')
-          path.svg__text
-          path.svg__text
+          svg.svg(xmlns='http://www.w3.org/2000/svg' width='0' height='35')
+            rect.svg__rect(x='0' y='0' width='0' height='35')
+            rect.svg__rect(x='0' y='0' width='0' height='35')
+            path.svg__text
+            path.svg__text
 
   //- Footer
   include layouts/general/_footer.pug
