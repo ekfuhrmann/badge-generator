@@ -100,21 +100,21 @@ const textToPath = async ({ text, type, offset = 0 }) => {
   };
 };
 
-const badge = async (textPrimary, textSecondary) => {
+const badge = async (text) => {
   const svg = document.querySelector('.svg');
   const svgRect = document.querySelectorAll('.svg__rect');
   const svgText = document.querySelectorAll('.svg__text');
-  const color = document.querySelectorAll('.form__color');
+  const color = document.querySelectorAll('[data-type="color"]');
 
   // draw primary text path
   const primary = await textToPath({
-    text: textPrimary,
+    text: text.primary,
     type: 'primary',
   });
 
   // draw secondary text path
   const secondary = await textToPath({
-    text: textSecondary,
+    text: text.secondary,
     type: 'secondary',
     offset: primary.size,
   });
@@ -155,15 +155,17 @@ const badge = async (textPrimary, textSecondary) => {
     'width',
     primary.size ? primary.size + 26 + (secondary.size ? 2 : 0) : 0
   );
-  svgRect[0].setAttributeNS(null, 'fill', color[0].value);
+  svgRect[0].setAttributeNS(null, 'fill', color[0].dataset.color);
+  svgText[0].setAttributeNS(null, 'fill', color[1].dataset.color);
   svgRect[1].setAttributeNS(
     null,
     'width',
     secondary.size ? secondary.size + 26 : 0
   );
-  svgRect[1].setAttributeNS(null, 'fill', color[1].value);
-  svgRect[1].setAttributeNS(null, 'x', primary.size ? primary.size + 26 : 0);
+  svgRect[1].setAttributeNS(null, 'fill', color[2].dataset.color);
+  svgText[1].setAttributeNS(null, 'fill', color[3].dataset.color);
   svgText[1].setAttributeNS(null, 'x', primary.size + 39);
+  svgRect[1].setAttributeNS(null, 'x', primary.size ? primary.size + 26 : 0);
 };
 
 export default badge;

@@ -33,19 +33,7 @@ block content
       .wrapper
         .section__card
           .section__card-content
-            form.form
-              h2.form__title Primary
-              label.form__label
-                input.form__input(type='text' value='Fuck It')
-                span.form__label-text Label
-              input.form__color(type='color' value='#a7bfc1')
-
-              label.form__label
-                input.form__input(type='text' value='Ship It')
-                span.form__label-text Label
-
-              input.form__color(type='color' value='#5593c8')
-              input.form__btn(type='submit' value='Generate SVG' name='submit')
+            include layouts/general/_form.pug
         .section__card
           svg.svg(xmlns='http://www.w3.org/2000/svg' width='0' height='35')
             rect.svg__rect(x='0' y='0' width='0' height='35')

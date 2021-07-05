@@ -4,7 +4,9 @@
 
 .section__card {
   background-color: $white;
-  padding: $grid-gap * 3 $grid-gap * 4;
+  display: flex;
+  justify-content: center;
+  padding: $grid-gap * 3 0;
   position: relative;
 
   &:first-of-type {
@@ -30,4 +32,5 @@
 
 .section__card-content {
   // padding: $grid-gap * 1.5 0;
+  width: 100%;
 }

@@ -1,0 +1,24 @@
+mixin formBox(content)
+  .form__box
+    h2.form__title= content.title
+    label.form__label(data-type='text')
+      input.form__input(type='text' value='' placeholder=content.placeholder)
+      span.form__label-text Label
+    .form__colors
+      label.form__label(data-type='color' data-name=`${content.title} Background Color`)
+        .color-picker
+        span.form__label-text Background Color
+      label.form__label(data-type='color' data-name=`${content.title} Text Color`)
+        .color-picker
+        span.form__label-text Text Color
+
+form.form
+  +formBox({
+    title: 'Primary',
+    placeholder: 'Sample',
+  })
+  hr.form__hr
+  +formBox({
+    title: 'Secondary',
+    placeholder: 'Text',
+  })

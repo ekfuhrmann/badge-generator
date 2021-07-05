@@ -2,6 +2,7 @@
 @import 'normalize-scss/sass/normalize';
 
 // VENDORS (loaded from node_modules)
+@import '@simonwep/pickr/dist/themes/monolith.min';
 @import 'include-media/dist/_include-media';
 @import 'rfs/scss';
 
@@ -51,11 +52,49 @@ body {
   @include visually-hidden;
 }
 
+// TODO: pretty sure this is deprecated...
 .options {
-  //
+  // reserved
 }
 
+// TODO: pretty sure this is deprecated...
 canvas {
   height: 35px;
   // width: 88px;
+}
+
+.pickr {
+  .pcr-button {
+    align-items: center;
+    background-color: $cararra;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px $mako;
+    box-sizing: border-box;
+    display: flex;
+    height: 32px;
+    justify-content: center;
+    // margin-top: 20px;
+    padding: 4px;
+    width: 32px;
+
+    &:focus,
+    &:hover {
+      box-shadow: $form-shadow;
+    }
+
+    &:focus {
+      background-color: $white;
+    }
+
+    &::after {
+      border-radius: 50%;
+      display: block;
+      opacity: 1;
+      position: relative;
+    }
+
+    &::before {
+      content: none;
+    }
+  }
 }
