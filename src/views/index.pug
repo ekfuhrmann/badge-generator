@@ -35,11 +35,16 @@ block content
           .section__card-content
             include layouts/general/_form.pug
         .section__card
-          svg.svg(xmlns='http://www.w3.org/2000/svg' width='0' height='35')
-            rect.svg__rect(x='0' y='0' width='0' height='35')
-            rect.svg__rect(x='0' y='0' width='0' height='35')
-            path.svg__text
-            path.svg__text
+          .svg__previewer
+            svg.svg(xmlns='http://www.w3.org/2000/svg' width='0' height='35')
+              rect.svg__rect(x='0' y='0' width='0' height='35')
+              rect.svg__rect(x='0' y='0' width='0' height='35')
+              path.svg__text
+              path.svg__text
+          .buttons
+            button.button__download Download Badge
+            button.button__markdown Copy Markdown
+            button.button__share Share Badge
 
   //- Footer
   include layouts/general/_footer.pug

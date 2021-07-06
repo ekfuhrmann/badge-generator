@@ -100,11 +100,27 @@ const textToPath = async ({ text, type, offset = 0 }) => {
   };
 };
 
+export const getInputText = () => {
+  const input = document.querySelectorAll('.form__input');
+
+  return {
+    primary:
+      input[0].value.trim() !== '' || input[1].value.trim() !== ''
+        ? input[0].value.trim()
+        : input[0].placeholder,
+    secondary:
+      input[1].value.trim() !== '' || input[0].value.trim() !== ''
+        ? input[1].value.trim()
+        : input[1].placeholder,
+  };
+};
+
 const badge = async (text) => {
   const svg = document.querySelector('.svg');
   const svgRect = document.querySelectorAll('.svg__rect');
   const svgText = document.querySelectorAll('.svg__text');
   const color = document.querySelectorAll('[data-type="color"]');
+  const download = document.querySelector('.button__download');
 
   // draw primary text path
   const primary = await textToPath({
