@@ -5,6 +5,29 @@ import { addParam } from './params';
 const url = new URL(window.location.href);
 
 const colorPicker = (el, i) => {
+  const colorKey = () => {
+    switch (i) {
+      case 0:
+        return 'pbg';
+        break;
+
+      case 1:
+        return 'ptext';
+        break;
+
+      case 2:
+        return 'sbg';
+        break;
+
+      case 3:
+        return 'stext';
+        break;
+
+      default:
+        break;
+    }
+  };
+
   const pickr = Pickr.create({
     el: el.querySelector('.color-picker'),
     theme: 'monolith', // or 'classic', or 'nano'
@@ -53,43 +76,18 @@ const colorPicker = (el, i) => {
     },
   });
 
-  const color = pickr.getColor().toHEXA().toString();
-  const colorKey = () => {
-    switch (i) {
-      case 0:
-        return 'pbg';
-        break;
-
-      case 1:
-        return 'ptext';
-        break;
-
-      case 2:
-        return 'sbg';
-        break;
-
-      case 3:
-        return 'stext';
-        break;
-
-      default:
-        break;
-    }
-  };
-
   pickr.on('init', () => {
-    el.dataset.color = color;
+    el.dataset.color = pickr.getColor().toHEXA().toString();
     badge(getInputText());
   });
 
   pickr.on('save', () => {
-    el.dataset.color = color;
+    el.dataset.color = pickr.getColor().toHEXA().toString();
     badge(getInputText());
     pickr.hide();
-    addParam(colorKey(), color);
+    addParam(colorKey(), el.dataset.color);
   });
 
-  // console.log(pickr.getColorRepresentation());
   return pickr;
 };
 
@@ -103,18 +101,17 @@ const form = () => {
   // build svg while adding primary input values
   input[0].addEventListener('keyup', (e) => {
     badge(getInputText());
-    url.searchParams.set('plabel', getInputText().primary);
-    console.log(url.search); // <== '?key=value'
+    addParam('plabel', getInputText().primary);
   });
 
   // build svg while adding secondary input values
   input[1].addEventListener('keyup', (e) => {
     badge(getInputText());
+    addParam('slabel', getInputText().secondary);
   });
 
   // build color pickers
   colors.forEach((color, i) => {
-    // console.log(i);
     colorPicker(color, i);
   });
 };

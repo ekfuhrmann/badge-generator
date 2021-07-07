@@ -1,9 +1,9 @@
 import buttons from './partials/buttons';
-import form from './partials/form';
+import params from './partials/params';
 
 // Reserved for scripts
 const main = () => {
-  form(); // handle form fields and build SVG preview
+  params(); // handle parameter queries
   buttons(); // set up buttons
 };
 
