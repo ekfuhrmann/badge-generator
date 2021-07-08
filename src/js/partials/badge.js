@@ -115,12 +115,16 @@ export const getInputText = () => {
   };
 };
 
+const previewState = () => {
+  const buttons = document.querySelectorAll('.preview__button');
+  const preview = document.querySelector('.preview');
+};
+
 const badge = async (text) => {
-  const svg = document.querySelector('.svg');
+  const svg = document.querySelector('.preview svg');
   const svgRect = document.querySelectorAll('.svg__rect');
   const svgText = document.querySelectorAll('.svg__text');
   const color = document.querySelectorAll('[data-type="color"]');
-  const download = document.querySelector('.button__download');
 
   // draw primary text path
   const primary = await textToPath({
@@ -182,6 +186,9 @@ const badge = async (text) => {
   svgText[1].setAttributeNS(null, 'fill', color[3].dataset.color);
   svgText[1].setAttributeNS(null, 'x', primary.size + 39);
   svgRect[1].setAttributeNS(null, 'x', primary.size ? primary.size + 26 : 0);
+
+  // enable/disable preview
+  previewState();
 };
 
 export default badge;

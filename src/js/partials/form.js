@@ -2,9 +2,8 @@ import Pickr from '@simonwep/pickr';
 import badge, { getInputText } from './badge';
 import { addParam } from './params';
 
-const url = new URL(window.location.href);
-
 const colorPicker = (el, i) => {
+  // determine color key based off index
   const colorKey = () => {
     switch (i) {
       case 0:
@@ -28,9 +27,10 @@ const colorPicker = (el, i) => {
     }
   };
 
+  // Create color picker
   const pickr = Pickr.create({
     el: el.querySelector('.color-picker'),
-    theme: 'monolith', // or 'classic', or 'nano'
+    theme: 'monolith',
     defaultRepresentation: 'HEX',
     lockOpacity: true,
     default: el.dataset.color,
@@ -57,12 +57,12 @@ const colorPicker = (el, i) => {
     ],
 
     components: {
-      // Main components
+      // main components
       preview: true,
       opacity: false,
       hue: true,
 
-      // Input / output Options
+      // input / output Options
       interaction: {
         hex: false,
         rgba: false,
@@ -83,9 +83,9 @@ const colorPicker = (el, i) => {
 
   pickr.on('save', () => {
     el.dataset.color = pickr.getColor().toHEXA().toString();
+    addParam(colorKey(), el.dataset.color);
     badge(getInputText());
     pickr.hide();
-    addParam(colorKey(), el.dataset.color);
   });
 
   return pickr;
@@ -100,14 +100,29 @@ const form = () => {
 
   // build svg while adding primary input values
   input[0].addEventListener('keyup', (e) => {
+    // if input has a value
+    if (getInputText().primary !== '') {
+      // add param
+      addParam('plabel', getInputText().primary);
+    }
+
+    // build badge
     badge(getInputText());
-    addParam('plabel', getInputText().primary);
   });
 
   // build svg while adding secondary input values
   input[1].addEventListener('keyup', (e) => {
+    // if input has a value
+    if (
+      getInputText().secondary !== '' &&
+      getInputText().secondary !== 'Text'
+    ) {
+      // add param
+      addParam('slabel', getInputText().secondary);
+    }
+
+    // build badge
     badge(getInputText());
-    addParam('slabel', getInputText().secondary);
   });
 
   // build color pickers

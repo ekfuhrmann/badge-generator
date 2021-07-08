@@ -1,32 +1,47 @@
 import ClipboardJS from 'clipboard';
 import { getInputText } from './badge';
+import { getParams } from './params';
+import { toast } from './toast';
 
 const svgNode = () => {
   // keep a DOM reference to the SVG element
-  const svg = document.querySelector('.svg');
+  const svg = document.querySelector('.preview svg');
 
   // serialize element into plain SVG
   return new XMLSerializer().serializeToString(svg);
 };
 
 const copyMarkdown = () => {
-  new ClipboardJS('.button__markdown', {
-    text: () => {
-      // convert svg to base64
-      var base64Data = window.btoa(svgNode());
+  const clipboard = new ClipboardJS(
+    '.preview__button[data-action="markdown"]',
+    {
+      text: () => {
+        // convert svg to base64
+        var base64Data = window.btoa(svgNode());
 
-      // convert to data URI
-      const svgUri = `data:image/svg+xml;base64,${base64Data}`;
+        // convert to data URI
+        const svgUri = `data:image/svg+xml;base64,${base64Data}`;
 
-      // generate markdown for copying
-      return `[![forthebadge](${svgUri})](https://forthebadge.com)`;
-    },
+        // generate markdown for copying
+        return `[![forthebadge](${svgUri})](https://forthebadge.com)`;
+      },
+    }
+  );
+
+  clipboard.on('success', (e) => {
+    // display toast notification
+    toast('Markdown Copied To Clipboard!', 'code');
+    e.clearSelection();
   });
 
-  // TODO: on success/error show toast
+  clipboard.on('error', (e) => {
+    // display toast notification
+    toast('Failed To Copy Markdown!', 'error');
+  });
 };
 
 const download = () => {
+  // generate a link node for download (since trigger is button)
   function createDownloadLink(filename) {
     const el = document.createElement('a');
 
@@ -50,53 +65,53 @@ const download = () => {
 
     // delete link
     document.body.removeChild(el);
+
+    // display toast notification
+    toast('Initiated Badge Download!', 'download');
   }
 
-  const downloadButton = document.querySelector('.button__download');
+  document
+    .querySelector('.preview__button[data-action="download"]')
+    .addEventListener('click', (e) => {
+      e.preventDefault();
 
-  downloadButton.addEventListener('click', (e) => {
-    e.preventDefault();
+      // combine primary and secondary name
+      const downloadName = `${getInputText().primary}${
+        getInputText().secondary ? ' ' + getInputText().secondary : ''
+      }.svg`;
 
-    // combine primary and secondary name
-    const downloadName = `${getInputText().primary}${
-      getInputText().secondary ? ' ' + getInputText().secondary : ''
-    }.svg`;
+      // replace spaces with dashes and set to lowercase
+      const filename = downloadName.toLowerCase().replace(/\s+/g, '-');
 
-    // replace spaces with dashes and set to lowercase
-    const filename = downloadName.toLowerCase().replace(/\s+/g, '-');
-
-    // create hidden download link
-    createDownloadLink(filename);
-  });
+      // create hidden download link
+      createDownloadLink(filename);
+    });
 };
 
 const share = () => {
-  // const urlSearchParams = new URLSearchParams(window.location.search);
-  // const params = Object.fromEntries(urlSearchParams.entries());
+  const clipboard = new ClipboardJS('.preview__button[data-action="share"]', {
+    text: () => {
+      // copy url + search params to clipboard
+      return window.location.host + (getParams() ? `/${getParams()}` : '');
+    },
+  });
 
-  const shareButton = document.querySelector('.button__share');
+  clipboard.on('success', (e) => {
+    // display toast notification
+    toast('Share Link Copied To Clipboard!', 'share');
+    e.clearSelection();
+  });
 
-  shareButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    const colors = document.querySelectorAll('[data-type="color"]');
-
-    const params = {
-      plabel: getInputText().primary,
-      pbg: colors[0].dataset.color,
-      ptext: colors[1].dataset.color,
-      slabel: getInputText().secondary,
-      sbg: colors[2].dataset.color,
-      stext: colors[3].dataset.color,
-    };
-
-    console.log(params);
+  clipboard.on('error', (e) => {
+    // display toast notification
+    toast('Failed To Copy Share Link!', 'error');
   });
 };
 
 const buttons = () => {
-  download();
   copyMarkdown();
-  // share(); //TODO: remove?
+  download();
+  share();
 };
 
 export default buttons;

@@ -12,7 +12,10 @@ block content
   .svg__spritesheet
     include ./layouts/includes/inline.svg
 
+  ul.toasts
+
   main.main
+    //- TODO: break header to its own layout
     header.header
       .wrapper
         .header__content
@@ -32,19 +35,12 @@ block content
     section.section
       .wrapper
         .section__card
+          a.section__mark(href='https://www.forthebadge.com')
           .section__card-content
             include layouts/general/_form.pug
         .section__card
-          .svg__previewer
-            svg.svg(xmlns='http://www.w3.org/2000/svg' width='0' height='35')
-              rect.svg__rect(x='0' y='0' width='0' height='35')
-              rect.svg__rect(x='0' y='0' width='0' height='35')
-              path.svg__text
-              path.svg__text
-          .buttons
-            button.button__download Download Badge
-            button.button__markdown Copy Markdown
-            button.button__share Share Badge
+          .section__card-content
+            include layouts/general/_preview.pug
 
   //- Footer
   include layouts/general/_footer.pug

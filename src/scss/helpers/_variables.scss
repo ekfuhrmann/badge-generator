@@ -18,22 +18,19 @@ $breakpoints: (
 // Settings
 $site-width: 1200px;
 $grid-gap: 1.6rem;
-$spacing: $grid-gap * 6.5;
-$form-shadow: inset 0 0 0 2px $mako, 4px 4px 8px #b2b2af, -4px -4px 8px #fff;
+$spacing: $grid-gap * 5;
+$form-shadow: inset 0 0 0 2px $mako, 4px 4px 8px #b2b2af, -4px -4px 8px $white;
+$button-shadow: inset 0 0 0 1px $mako, 4px 4px 8px #d9d9d9, -4px -4px 8px $white;
 
 // CSS Variables
 :root {
-  --spacing: #{$spacing / 4};
+  --spacing: #{$spacing / 2};
 
   @include media('>=sm') {
-    --spacing: #{$spacing / 2};
-  }
-
-  @include media('>=lg') {
     --spacing: #{$spacing * 0.75};
   }
 
-  @include media('>=xl') {
+  @include media('>=lg') {
     --spacing: #{$spacing};
   }
 }

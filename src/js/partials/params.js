@@ -3,56 +3,70 @@ import form from './form';
 const url = new URL(window.location.href);
 const searchParams = new URLSearchParams(url.search);
 
-// Modify search query param in URL
+// modify search query param in URL
 export const addParam = (key, value) => {
   url.searchParams.set(key, value);
-  window.history.replaceState({}, '', url.search); // update url
 };
 
-const removeParam = (key) => {
-  // TODO: figure out how to purge all search params (currently leaving up 1 param)
+// get current params
+export const getParams = () => {
+  return url.search;
+};
+
+// remove specific param
+export const removeParam = (key) => {
   url.searchParams.delete(key);
-  console.log(url.search);
-  window.history.replaceState({}, '', url.search); // update url
 };
 
 const params = () => {
-  // modify default form states based on params
-  searchParams.forEach((value, key) => {
-    const input = document.querySelectorAll('.form__input');
-    const colors = document.querySelectorAll('[data-type="color"]');
+  // check if search params exist
+  if (getParams()) {
+    // clear params from url (on page load)
+    window.history.replaceState(
+      {},
+      '',
+      '/' +
+        window.location.href
+          .substring(window.location.href.lastIndexOf('/') + 1)
+          .split('?')[0]
+    );
 
-    switch (key) {
-      case 'plabel':
-        input[0].value = value;
-        break;
+    // update default form states based on params
+    searchParams.forEach((value, key) => {
+      const input = document.querySelectorAll('.form__input');
+      const colors = document.querySelectorAll('[data-type="color"]');
 
-      case 'slabel':
-        input[1].value = value;
-        break;
+      switch (key) {
+        case 'plabel':
+          input[0].value = value;
+          break;
 
-      case 'pbg':
-        colors[0].dataset.color = value;
-        break;
+        case 'slabel':
+          input[1].value = value;
+          break;
 
-      case 'ptext':
-        colors[1].dataset.color = value;
-        break;
+        case 'pbg':
+          colors[0].dataset.color = value;
+          break;
 
-      case 'sbg':
-        colors[2].dataset.color = value;
-        break;
+        case 'ptext':
+          colors[1].dataset.color = value;
+          break;
 
-      case 'stext':
-        colors[3].dataset.color = value;
-        break;
+        case 'sbg':
+          colors[2].dataset.color = value;
+          break;
 
-      default:
-        break;
-    }
+        case 'stext':
+          colors[3].dataset.color = value;
+          break;
 
-    removeParam(key);
-  });
+        default:
+          break;
+      }
+      addParam(key, value);
+    });
+  }
 
   form(); // handle form fields and build SVG preview
 };
