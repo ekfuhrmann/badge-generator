@@ -16,7 +16,8 @@
   @include font($size: 1.8rem, $weight: 400, $color: $mako);
   align-items: center;
   animation: toastIn 250ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
-    toastOut 300ms ease-out 4700ms forwards;
+    toastOut 300ms ease-out 4450ms forwards,
+    toastCollapse 250ms ease 4750ms forwards;
   background-color: $white;
   box-shadow: inset 0 0 0 1px $mako, inset 4px 0 $mako,
     4px 4px 8px rgba($mako, 0.2);
@@ -25,13 +26,14 @@
   overflow: hidden;
   padding: $grid-gap * 0.75 $grid-gap;
   position: relative;
+  will-change: auto;
 
   & + & {
     margin-top: $grid-gap;
   }
 
   &::after {
-    animation: toastTimer 4450ms linear 250ms forwards;
+    animation: toastTimer 4200ms linear 250ms forwards;
     background: rgba($mako, 0.2);
     bottom: 0;
     content: '';
@@ -41,6 +43,7 @@
     right: 0;
   }
 
+  // animate-in toast
   @keyframes toastIn {
     0% {
       opacity: 0;
@@ -53,6 +56,7 @@
     }
   }
 
+  // toast duration indicator
   @keyframes toastTimer {
     0% {
       transform: translateX(0);
@@ -63,12 +67,25 @@
     }
   }
 
+  // fade out toast
   @keyframes toastOut {
     0% {
       opacity: 1;
     }
     100% {
       opacity: 0;
+    }
+  }
+
+  // animation to collapse toast after fade
+  @keyframes toastCollapse {
+    0% {
+      max-height: 51px;
+    }
+    100% {
+      margin-top: -$grid-gap;
+      max-height: 0;
+      padding: 0;
     }
   }
 }

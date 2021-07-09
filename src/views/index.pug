@@ -12,35 +12,13 @@ block content
   .svg__spritesheet
     include ./layouts/includes/inline.svg
 
+  //- Toasts container
   ul.toasts
 
+  //- Page
   main.main
-    //- TODO: break header to its own layout
-    header.header
-      .wrapper
-        .header__content
-          h3.header__tagline
-            span(data-visibility='hidden') Badges For Badges' Sake
-            +inline-svg('tagline', 'header__svg')
-          h1.header__title
-            span(data-visibility='hidden') For The Badge
-            +inline-svg('title', 'header__svg')
-          h2.header__subtitle
-            span(data-visibility='hidden') Generator
-            +inline-svg('subtitle', 'header__svg')
-          .header__chevrons
-            +inline-svg('chevron-down', 'header__chevron')
-            +inline-svg('chevron-down', 'header__chevron')
-
-    section.section
-      .wrapper
-        .section__card
-          a.section__mark(href='https://www.forthebadge.com')
-          .section__card-content
-            include layouts/general/_form.pug
-        .section__card
-          .section__card-content
-            include layouts/general/_preview.pug
+    include layouts/general/_header.pug
+    include layouts/general/_sections.pug
 
   //- Footer
   include layouts/general/_footer.pug

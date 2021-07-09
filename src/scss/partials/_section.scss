@@ -16,7 +16,6 @@
 }
 
 .section__mark {
-  background: url('../svg/mark.svg') center center/contain no-repeat;
   display: block;
   height: 90px;
   left: 0;
@@ -26,6 +25,19 @@
   text-decoration: none;
   transform: translateY($grid-gap * -7.25);
   width: 78px;
+
+  &::after {
+    background: url('../svg/mark.svg') center center/contain no-repeat;
+    content: '';
+    display: block;
+    height: 100%;
+    transition: 250ms ease;
+    width: 100%;
+  }
+
+  &:hover::after {
+    transform: translateY(8px);
+  }
 }
 
 .section__card-content {
