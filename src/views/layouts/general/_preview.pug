@@ -1,0 +1,26 @@
+mixin button(content)
+  button.preview__button(data-action=content.action)= content.label
+    +inline-svg(content.icon, 'preview__button-icon')
+
+.preview
+  svg(xmlns='http://www.w3.org/2000/svg' width='0' height='35')
+    rect.svg__rect(x='0' y='0' width='0' height='35')
+    rect.svg__rect(x='0' y='0' width='0' height='35')
+    path.svg__text
+    path.svg__text
+  .preview__buttons
+    +button({
+      label: 'Copy Markdown',
+      action: 'markdown',
+      icon: 'code'
+    })
+    +button({
+      label: 'Download Badge',
+      action: 'download',
+      icon: 'download'
+    })
+    +button({
+      label: 'Share Badge',
+      action: 'share',
+      icon: 'share'
+    })

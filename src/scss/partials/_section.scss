@@ -1,0 +1,46 @@
+.section {
+  // reserved
+}
+
+.section__card {
+  background-color: $white;
+  display: flex;
+  justify-content: center;
+  padding: $grid-gap * 3 0;
+  position: relative;
+
+  &:first-of-type {
+    background-color: $cararra;
+    margin-top: $grid-gap * 4.25; // account for section__mark
+  }
+}
+
+.section__mark {
+  display: block;
+  height: 90px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  text-decoration: none;
+  transform: translateY($grid-gap * -7.25);
+  width: 78px;
+
+  &::after {
+    background: url('../svg/mark.svg') center center/contain no-repeat;
+    content: '';
+    display: block;
+    height: 100%;
+    transition: 250ms ease;
+    width: 100%;
+  }
+
+  &:hover::after {
+    transform: translateY(8px);
+  }
+}
+
+.section__card-content {
+  padding: 0 var(--spacing);
+  width: 100%;
+}

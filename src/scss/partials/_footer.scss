@@ -1,0 +1,20 @@
+.footer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  padding: calc(var(--spacing) * 0.75) 0 calc(var(--spacing) / 2);
+}
+
+.footer__link {
+  align-items: center;
+  display: flex;
+  height: 20px;
+  text-decoration: none;
+}
+
+.footer__svg {
+  fill: $white;
+  height: 100%;
+  width: auto;
+}

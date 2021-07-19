@@ -1,0 +1,29 @@
+mixin colorInput(label, defaultColor)
+  label.form__label(data-type='color' data-color=defaultColor)
+    .color-picker
+    span.form__label-text= label
+
+mixin formBox(content)
+  .form__box
+    h2.form__title= content.title
+    label.form__label(data-type='text')
+      input.form__input(type='text' value='' placeholder=content.placeholder)
+      span.form__label-text Label
+    .form__colors
+      +colorInput('Background Color', content.bgColor)
+      +colorInput('Text Color', content.textColor)
+
+form.form
+  +formBox({
+    title: 'Primary',
+    placeholder: 'Sample',
+    bgColor: '#31c4f3',
+    textColor: '#ffffff'
+  })
+  hr.form__hr
+  +formBox({
+    title: 'Secondary',
+    placeholder: 'Text',
+    bgColor: '#389ad5',
+    textColor: '#ffffff'
+  })
