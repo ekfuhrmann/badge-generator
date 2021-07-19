@@ -92,7 +92,7 @@ const share = () => {
   const clipboard = new ClipboardJS('.preview__button[data-action="share"]', {
     text: () => {
       // copy url + search params to clipboard
-      return window.location.host + (getParams() ? `/${getParams()}` : '');
+      return window.location.origin + (getParams() ? `/${getParams()}` : '');
     },
   });
 
