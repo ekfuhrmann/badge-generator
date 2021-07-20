@@ -64,7 +64,7 @@
     "stylelint-order": "^4.1.0",
     "stylelint-scss": "^3.19.0",
     "webpack-stream": "^6.1.2",
-    "yargs": "^16.2.0"
+    "yargs": "^17.0.1"
   },
   "dependencies": {
     "@simonwep/pickr": "^1.8.1",
