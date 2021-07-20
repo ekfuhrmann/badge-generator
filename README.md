@@ -55,3 +55,4 @@ At this point, all that was left to do was to adjust the spacing between each gl
 
 ## Future TODO's
   * Add support for badge icons
+  * Figure out a fix for embedding badges into markdown without uploading the svg
