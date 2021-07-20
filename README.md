@@ -23,7 +23,6 @@ $ yarn dev
 $ yarn build
 ```
 
----
 
 ## Important
 The **Copy Markdown** output is in Base64 so as to not need the badge to be hosted anywhere. This unfortunately means that it will not render in many markdown programs due to security issues, [though there have been numerous](https://github.com/github/markup/issues/270) [submissions to account for this](https://github.com/gjtorikian/html-pipeline/pull/227). Nonetheless, should you wish to include one of these badges in your own markdown where it fails to support Base64, I suggest you download the badge, and then upload it to the project you wish for it to render in. It's a minor inconvenience, but it sure is better than nothing.
