@@ -1,6 +1,8 @@
 # For The Badge Generator
 [![forthebadge](https://forthebadge.com/images/badges/fuck-it-ship-it.svg)](https://forthebadge.com)
 
+Try it out [HERE](https://forthebadge.com/generator/).
+
 ## General
 **NOTE:** This repository simply builds the production code which then needs to be added to the [For The Badge](https://github.com/BraveUX/for-the-badge) project in order to render. 
 
