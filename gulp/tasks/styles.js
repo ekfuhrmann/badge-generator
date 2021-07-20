@@ -1,12 +1,15 @@
 import { src, dest } from 'gulp';
 import sourcemaps from 'gulp-sourcemaps';
-import sass from 'gulp-sass';
+import dartSass from 'sass';
+import gulpSass from 'gulp-sass';
 import postcss from 'gulp-postcss';
 import rename from 'gulp-rename';
 import gulpif from 'gulp-if';
 import cleanCss from 'gulp-clean-css';
 import autoprefixer from 'autoprefixer';
 import yargs from 'yargs';
+
+const sass = gulpSass(dartSass);
 
 // Check for --prod or --production flag
 const PRODUCTION = yargs.argv.prod;

@@ -30,7 +30,7 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-  padding: $grid-gap/2 $grid-gap;
+  padding: math.div($grid-gap, 2) $grid-gap;
   text-align: center;
   transition: box-shadow 300ms;
 
@@ -43,7 +43,7 @@
 .preview__button-icon {
   fill: currentColor;
   height: 18px;
-  margin-left: $grid-gap/2;
+  margin-left: math.div($grid-gap, 2);
   width: 18px;
 
   svg {

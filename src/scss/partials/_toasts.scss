@@ -93,7 +93,7 @@
 .toast__icon {
   fill: currentColor;
   height: 24px;
-  margin-right: $grid-gap/2;
+  margin-right: math.div($grid-gap, 2);
   order: -1;
   width: 24px;
 }

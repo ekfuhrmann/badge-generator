@@ -24,7 +24,7 @@ $button-shadow: inset 0 0 0 1px $mako, 4px 4px 8px #d9d9d9, -4px -4px 8px $white
 
 // CSS Variables
 :root {
-  --spacing: #{$spacing / 2};
+  --spacing: #{math.div($grid-gap, 2)};
 
   @include media('>=sm') {
     --spacing: #{$spacing * 0.75};
