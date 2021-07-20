@@ -22,10 +22,11 @@ const params = () => {
   // check if search params exist
   if (getParams()) {
     // clear params from url (on page load)
+    debugger;
     window.history.replaceState(
       {},
       '',
-      '/' +
+      window.location.pathname +
         window.location.href
           .substring(window.location.href.lastIndexOf('/') + 1)
           .split('?')[0]

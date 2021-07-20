@@ -91,8 +91,13 @@ const download = () => {
 const share = () => {
   const clipboard = new ClipboardJS('.preview__button[data-action="share"]', {
     text: () => {
+      // get url
+      // let url = window.location.href;
+      // remove any trailing slash if needed
+      // url = url.endsWith('/') ? url.slice(0, -1) : url;
+
       // copy url + search params to clipboard
-      return window.location.origin + (getParams() ? `/${getParams()}` : '');
+      return window.location.href + (getParams() ? `${getParams()}` : '');
     },
   });
 

@@ -71,9 +71,8 @@ const pathSpacing = (data) => {
 
 // converts text to path and returns the size of the path
 const textToPath = async ({ text, type, offset = 0 }) => {
-  const primaryFont = './assets/fonts/roboto/roboto-medium-webfont.woff';
-  const secondaryFont =
-    './assets/fonts/montserrat/montserrat-extrabold-webfont.woff';
+  const primaryFont = `${window.location.href}/assets/fonts/roboto/roboto-medium-webfont.woff`;
+  const secondaryFont = `${window.location.href}/assets/fonts/montserrat/montserrat-extrabold-webfont.woff`;
 
   const font = await opentype.load(
     type === 'secondary' ? secondaryFont : primaryFont
