@@ -6,7 +6,7 @@ import pug from './gulp/tasks/pug';
 import images from './gulp/tasks/images';
 import clean from './gulp/tasks/clean';
 import assets from './gulp/tasks/assets';
-import { svgInline, svgStandalone, svg } from './gulp/tasks/svg';
+import svg, { svgInline, svgStandalone } from './gulp/tasks/svg';
 import { browserSync, reload } from './gulp/tasks/server';
 
 const tasks = parallel(svg, scripts, styles, pug, images, assets);
