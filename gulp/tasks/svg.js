@@ -8,12 +8,12 @@ export const svgInline = () => {
       svgmin({
         plugins: [
           {
-            removeUselessStrokeAndFill: false,
+            name: 'removeUselessStrokeAndFill',
+            active: false,
           },
           {
-            removeAttrs: {
-              attrs: '*:(stroke|fill):((?!^none$).)*',
-            },
+            name: 'removeAttrs',
+            attrs: '*:(stroke|fill):((?!^none$).)*',
           },
         ],
       })
@@ -28,6 +28,6 @@ export const svgStandalone = () => {
     .pipe(dest(`dist/assets/svg`));
 };
 
-export const svg = parallel(svgInline, svgStandalone);
+const svg = parallel(svgInline, svgStandalone);
 
 export default svg;
