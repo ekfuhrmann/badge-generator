@@ -8,6 +8,7 @@
     "at-rule-no-unknown": null,
     "property-no-unknown": [true, { "ignoreProperties": ["font-range"] }],
     "declaration-empty-line-before": "never",
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "no-invalid-position-at-import-rule": null
   }
 }

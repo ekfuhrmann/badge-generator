@@ -17,7 +17,7 @@ const copyMarkdown = () => {
     {
       text: () => {
         // convert svg to base64
-        var base64Data = window.btoa(svgNode());
+        const base64Data = window.btoa(svgNode());
 
         // convert to data URI
         const svgUri = `data:image/svg+xml;base64,${base64Data}`;
