@@ -20,10 +20,10 @@ const copyMarkdown = () => {
         const base64Data = window.btoa(svgNode());
 
         // convert to data URI
-        const svgUri = `data:image/svg+xml;base64,${base64Data}`;
+        const svgURI = `data:image/svg+xml;base64,${base64Data}`;
 
         // generate markdown for copying
-        return `[![forthebadge](${svgUri})](https://forthebadge.com)`;
+        return `[![forthebadge](${svgURI})](https://forthebadge.com)`;
       },
     }
   );

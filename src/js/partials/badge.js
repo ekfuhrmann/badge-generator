@@ -125,6 +125,9 @@ const badge = async (text) => {
   const svgText = document.querySelectorAll('.svg__text');
   const color = document.querySelectorAll('[data-type="color"]');
 
+  // This is running every time
+  // console.log(icon.getBoundingClientRect().width);
+
   // draw primary text path
   const primary = await textToPath({
     text: text.primary,

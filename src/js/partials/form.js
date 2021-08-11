@@ -92,14 +92,15 @@ const colorPicker = (el, i) => {
 };
 
 const form = () => {
-  const input = document.querySelectorAll('.form__input');
+  const label = document.querySelectorAll('.form__input');
   const colors = document.querySelectorAll('[data-type="color"]');
+  const iconInput = document.querySelector('#test');
 
   // build svg on load using default values
   badge(getInputText());
 
   // build svg while adding primary input values
-  input[0].addEventListener('keyup', (e) => {
+  label[0].addEventListener('keyup', (e) => {
     // if input has a value
     if (getInputText().primary !== '') {
       // add param
@@ -111,7 +112,7 @@ const form = () => {
   });
 
   // build svg while adding secondary input values
-  input[1].addEventListener('keyup', (e) => {
+  label[1].addEventListener('keyup', (e) => {
     // if input has a value
     if (
       getInputText().secondary !== '' &&
@@ -128,6 +129,55 @@ const form = () => {
   // build color pickers
   colors.forEach((color, i) => {
     colorPicker(color, i);
+  });
+
+  iconInput.addEventListener('change', (e) => {
+    let secondaryIcon = document.querySelector('.secondary-icon') || null;
+
+    // verify that an svg file is loaded
+    if (!e.target.files[0]) {
+      // remove current icon if not
+      secondaryIcon.remove();
+      return false;
+    }
+
+    // set up file reader
+    const reader = new FileReader();
+
+    // read file
+    reader.readAsText(e.target.files[0]);
+
+    // once file is loaded, handle the data
+    reader.onload = handleFileLoad;
+
+    function handleFileLoad(e) {
+      // base64 the icon
+      const base64Data = window.btoa(e.target.result);
+
+      // convert it to an SVG URI
+      const svgURI = `data:image/svg+xml;base64,${base64Data}`;
+
+      // if icon image element does not exist, create it
+      if (secondaryIcon == null) {
+        secondaryIcon = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'image'
+        );
+
+        // provide default attributes
+        secondaryIcon.setAttributeNS(null, 'class', 'secondary-icon');
+        secondaryIcon.setAttributeNS(null, 'height', '20');
+        secondaryIcon.setAttributeNS(null, 'y', '7.5');
+        secondaryIcon.setAttributeNS(null, 'href', svgURI);
+
+        // add icon to svg
+        const svgEl = document.querySelector('.preview svg');
+        svgEl.appendChild(secondaryIcon);
+      } else {
+        // update icon
+        secondaryIcon.setAttributeNS(null, 'href', svgURI);
+      }
+    }
   });
 };
 
