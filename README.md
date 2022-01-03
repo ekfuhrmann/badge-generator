@@ -56,5 +56,5 @@ While that mostly worked, it didn't solve the problem 100% since the typefaces w
 At this point, all that was left to do was to adjust the spacing between each glyph to better match our intended badge letter-spacing.
 
 ## Future TODO's
-  * Add support for badge icons
+  * Add support for badge icons (leverage an icon library like https://simpleicons.org/ to have greater control over icon formats - [Related Issue](https://github.com/BraveUX/for-the-badge/issues/182)) 
   * Figure out a fix for embedding badges into markdown without uploading the svg
