@@ -1,7 +1,7 @@
 # For The Badge Generator
 [![forthebadge](https://forthebadge.com/images/badges/fuck-it-ship-it.svg)](https://forthebadge.com)
 
-Try it out [HERE](https://forthebadge.com/generator/).
+Try it out [HERE]([https://forthebadge.com/generator/](https://master--for-the-badge-generator.netlify.app/)).
 
 ## General
 **NOTE:** This repository simply builds the production code which then needs to be added to the [For The Badge](https://github.com/BraveUX/for-the-badge) project in order to render. 
@@ -38,7 +38,7 @@ Over the years, hundreds of people have submitted badge requests and it was beca
 
 The original plan up to this point had been to strictly define a ruleset for submitting a badge, but as anyone who has attempted to do so can attest, there are a lot of things to consider and we don't expect everyone to have an Adobe license, let alone have working knowledge of how to operate within it to meet the expectations we set forth. As such, I wanted to come up with some form of automating the process in order to better meet the needs of the various users who really like the style of these badges, while not having such a high bar for submission.
 
-As such, the [For The Badge Generator](https://forthebadge.com/generator) was born!
+As such, the [For The Badge Generator]([https://forthebadge.com/generator](https://master--for-the-badge-generator.netlify.app/)) was born!
 
 ## Challenges
 ### Embedding a font
