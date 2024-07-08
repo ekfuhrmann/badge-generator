@@ -1,12 +1,12 @@
 # For The Badge Generator
-[![forthebadge](https://forthebadge.com/images/badges/fuck-it-ship-it.svg)](https://forthebadge.com)
+[![forthebadge](https://for-the-badge-ef.netlify.app/images/badges/fuck-it-ship-it.svg)](https://for-the-badge-ef.netlify.app/)
 
 Try it out [HERE](https://for-the-badge-generator.netlify.app/).
 
 ## General
-**NOTE:** This repository simply builds the production code which then needs to be added to the [For The Badge](https://github.com/BraveUX/for-the-badge) project in order to render. 
+**NOTE:** This repository simply builds the production code which then needs to be added to the [For The Badge](https://github.com/ekfuhrmann/for-the-badge) project in order to render. 
 
-Move the `production` built `dist` *files* into the `src/generator` directory found [here](https://github.com/BraveUX/for-the-badge).
+Move the `production` built `dist` *files* into the `src/generator` directory found [here](https://github.com/ekfuhrmann/for-the-badge).
 
 ## Setup
 
@@ -29,10 +29,10 @@ $ yarn build
 ## Important
 The **Copy Markdown** output is in Base64 so as to not need the badge to be hosted anywhere. This unfortunately means that it will not render in many markdown programs due to security issues, [though there have been numerous](https://github.com/github/markup/issues/270) [submissions to account for this](https://github.com/gjtorikian/html-pipeline/pull/227). Nonetheless, should you wish to include one of these badges in your own markdown where it fails to support Base64, I suggest you download the badge, and then upload it to the project you wish for it to render in. It's a minor inconvenience, but it sure is better than nothing.
 
-Not good enough? Well you could also [submit a pull request](https://github.com/BraveUX/for-the-badge#contributing) for the badge to be hosted on our [For The Badge](https://forthebadge.com/) site.
+Not good enough? Well you could also [submit a pull request](https://github.com/ekfuhrmann/for-the-badge#contributing) for the badge to be hosted on our [For The Badge](https://for-the-badge-ef.netlify.app/) site.
 
 ## About
-[For The Badge](https://forthebadge.com/) was originally developed as a knock on repository badges, but over time and as more users discovered our rendition of badges, it became something more than that.
+[For The Badge](https://for-the-badge-ef.netlify.app/) was originally developed as a knock on repository badges, but over time and as more users discovered our rendition of badges, it became something more than that.
 
 Over the years, hundreds of people have submitted badge requests and it was becaming increasingly difficult to play curator, as well as ensure that the level of detail we expect for our badges at [Brave UX](https://www.braveux.com) was being met.
 
