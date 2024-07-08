@@ -23,7 +23,7 @@ const copyMarkdown = () => {
         const svgUri = `data:image/svg+xml;base64,${base64Data}`;
 
         // generate markdown for copying
-        return `[![forthebadge](${svgUri})](https://forthebadge.com)`;
+        return `[![forthebadge](${svgUri})](https://for-the-badge-ef.netlify.app/)`;
       },
     }
   );
